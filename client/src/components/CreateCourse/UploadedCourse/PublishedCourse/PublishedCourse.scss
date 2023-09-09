@@ -1,0 +1,121 @@
+@use '../../../../styles/style.scss' as *;
+
+.published_course--container{
+    width: 100%;
+    margin-bottom: 3rem;
+
+    .published_course--card{
+        border: 1px solid grey;
+        width: 90%;
+        min-height: 160px;
+        gap: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 8px;
+        margin: 0 auto 1rem;
+        @include responsive(laptop){
+            margin-left: 0;
+            width: 100%;
+        }
+        @include responsive(tabletS){
+            flex-direction: column;
+        }
+        
+        &-left{
+            cursor: pointer;
+            .published_course--thumbnail{
+                height: 140px;
+                @include responsive(tabletS){
+                    min-height: 100px;
+                }
+                img{
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+        
+        &-center{
+            flex: 1;
+            
+            .published_course--info{
+                cursor: pointer;
+                margin-top: 10px;
+                h3{
+                    @include responsive(tabletL){
+                        font-size: 13px;
+                    }
+                }
+                .published_course--description{
+                    margin: 8px auto;  
+                    font-size: 13px;
+                    @include responsive(tabletS){
+                        font-size: 12px;
+                    }
+                }
+                .additional_lecture--info{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: baseline;
+                    gap: 8px;
+                    @include responsive(tabletL){
+                        font-size: 13px;
+                    }
+                    @include responsive(mobileS){
+                        flex-direction: column;
+                    }
+
+                    .published_course--price{
+                        font-weight: 500;
+                        font-size: 16px;
+                        font-family: var(--font-header);
+                        @include responsive(tabletL){
+                            font-size: 13px;
+                        }
+                    }
+                    .published_course--rating{
+                        margin-top: 4px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: flex-end;
+                        flex: 1;
+                        gap: 4px;
+                        span{
+                            font-size: 11px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+                .additional_lecture--lower{
+                    @include flex-center;
+                    justify-content: flex-start;
+                    gap: 8px;
+                    margin-top: 8px;
+                    p, span{
+                        @include responsive(tabletL){
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+        
+        &-right{
+            .course-stat{
+                @include flex-center-col;
+                align-items: flex-start;
+                gap: 10px;
+                p{
+                    strong{
+                        font-family: var(--font-header);
+                    }
+                    @include responsive(tabletL){
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+}

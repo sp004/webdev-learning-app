@@ -1,0 +1,43 @@
+@use '../../styles/style.scss' as *;
+
+.payment-success{
+    min-height: 80vh;
+    margin: 2rem auto;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    h2{
+        text-align: center;
+        margin: 1rem auto;
+        @include responsive(tabletS){
+            font-size: 15px;
+        }
+    }
+
+    p{
+        margin: 1rem auto;
+        font-weight: 600;
+    }
+
+    .purchased-courses{
+        @include course-card--container;
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+        width: 80%;
+        margin: 2rem auto;
+        gap: 2rem;
+        
+        .purchased-course{
+            @include flex-center-col;
+            padding: 1rem;
+            box-shadow: 1px 1px 5px 1px #dddddd;
+            @include responsive(tabletS){
+                width: unset;
+            }
+            img{
+                width: 100%;
+                object-fit: contain;
+                margin-bottom: 6px;
+            }
+        }
+    }
+}

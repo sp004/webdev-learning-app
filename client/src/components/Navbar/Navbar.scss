@@ -1,0 +1,184 @@
+@use '../../styles/style.scss' as *;
+@use '../../styles/abstracts/responsive' as *;
+
+nav{
+    position: relative;
+    background-color: #f7f7f7;
+    padding: 1rem 2rem;
+    @include responsive(tabletL){
+        padding: 1rem 10px;
+    }
+
+    // &.active{
+    //     position: sticky;
+    //     top: 0;
+    //     background-color: #e8e8e8;
+    //     z-index: 999;
+    //     transition: 0.2s all ease-in;
+    // }
+
+    .logo{
+        width: 120px;
+        height: 100%;
+        @include responsive(tabletL){
+            width: 100px;
+        }
+        @include responsive(mobileL){
+            display: none;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .search-container{
+        // width: 33%;
+        height: 40px;
+        flex: 0.7;
+        position: relative;
+        @include responsive(laptop){
+            flex: 0.8;
+        }
+        @include responsive(mobileL){
+            flex: 0.95;
+        }
+
+        .search_form{
+            position: relative;
+            &--input{
+                width: 100%;
+                height: 100%;
+                padding: 10px 1rem;
+                border-radius: 50px;
+                outline: none;
+                border: 1px solid #111;
+                font-size: var(--text-size);
+            }
+            &--close-icon{
+                position: absolute;
+                top: 50%;
+                right: 3%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+        }
+
+        ul{
+            background-color: #fff;
+            border: 1px solid grey;
+            width: 100%;
+            margin-top: 8px;
+            position: absolute;
+            width: 100%;
+            height: fit-content;
+            // overflow-y: scroll;
+            z-index: 9999;
+
+            .selected{
+                background-color: #f0f0f0;
+            }
+            li{
+                @include flex-center;
+                justify-content: flex-start;
+                padding: 4px;
+                gap: 8px;
+                cursor: pointer;
+                border-bottom: 2px solid #eee;
+
+                img{
+                    height: 30px;
+                    width: 42px;
+                    border: 1px solid grey;
+                }
+                .course-info{
+                    &--title{
+                        font-size: 13px;
+                        font-weight: 600;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                    }
+                    &--instructor{
+                        font-size: 11px;
+                        color: #565656;
+                    }
+                }
+
+                &:hover{
+                    background-color: #f0f0f0;
+                }
+
+            }
+            li:nth-last-child(1){
+                padding: 8px;
+            }
+
+        }
+    }
+
+    .navlink-container{
+        .nav-links{
+            gap: 1.5rem;
+            .nav-link{
+                cursor: pointer;
+                .cart{
+                    position: relative;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        bottom: 90%;
+                        left: 50%;
+                        height: 25px;
+                        width: 25px;
+                        border-radius: 50%;
+                        background-color: $primary-color;
+                    }
+                    .course-count{
+                        position: absolute;
+                        color: #fff;
+                        font-size: 12px;
+                        font-weight: 600;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+            }
+            .mobile_nav-link{
+                @include responsive(tabletL){
+                    display: none;
+                }
+            }
+            .avatar{
+                height: 40px;
+                min-width: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                background: lightgray;
+
+                img{
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+            .mobile-hidden{
+                @include responsive(tabletL){
+                    display: none;
+                }
+            }
+            .nav-hamburger{
+                display: none;
+                @include responsive(tabletL){
+                    display: block;
+                    cursor: pointer;
+                }
+                &--icon{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+}

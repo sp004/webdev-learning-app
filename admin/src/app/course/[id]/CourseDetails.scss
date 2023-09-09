@@ -1,0 +1,31 @@
+section{
+    // display: grid;
+    // place-items: center;
+    margin: 3rem auto;
+    line-height: 2;
+
+    .info-field{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+
+        label{
+            font-weight: bold;
+            font-size: 1rem;
+            color: #474747;
+        }
+        p{
+            font-size: 15px;
+        }
+    }
+    .content{
+        flex-direction: column;
+        gap: 0;
+        ul{
+            li{
+                list-style: none;
+            }
+        }
+    }
+}

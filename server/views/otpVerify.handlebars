@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Account</title>
+    <style>
+      body { background-color: #0a1930; padding: 30px; font-family: Arial,
+      Helvetica, sans-serif; } .container { background-color: #eee; padding:
+      10px; border-radius: 3px; } .color-primary { color: #e65050; }
+      .color-danger { color: #e65050; } .color-success { color: #e65050; }
+      .color-white { color: #fff; } .color-blue { color: #0a1930; } a {
+      font-size: 1.4rem; text-decoration: none; } .btn { font-size: 1.4rem;
+      font-weight: 400; padding: 6px 8px; margin: 0 5px 0 0; border: 1px solid
+      transparent; border-radius: 3px; cursor: pointer; } .btn-primary { color:
+      #fff; background: #e65050; } .btn-secondary { color: #fff; border: 1px
+      solid #fff; background: transparent; } .btn-danger { color: #fff;
+      background: #e65050; } .btn-success { color: #fff; background: #e65050;
+      } .flex-center { display: flex; justify-content: center; align-items:
+      center; } .my { margin: 2rem 0; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h4>Hi {{name?.split(' ')[0]}},</h4>
+      <p>Please use the One Time Password to login to your account</p>
+      <p>This code is valid for 2 minutes</p>
+
+      <h3>OTP: <span class="color-danger my">{{link}}</span></h3>
+
+      <p>If you did not initiate this login, please ignore.</p>
+
+      <div class="my">
+        <p>Regards...</p>
+        <p><b class="color-danger">WebdevSkool</b> Team</p>
+      </div>
+    </div>
+  </body>
+</html>

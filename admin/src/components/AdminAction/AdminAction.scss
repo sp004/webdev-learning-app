@@ -1,0 +1,45 @@
+.buttons{
+    display: grid;
+    place-items: center;
+    margin: 1rem auto;
+
+    .action{
+        display: flex;
+        gap: 10px;
+        .approve{
+            background-color: rgb(41, 219, 41);
+        }
+        .reject{
+            background-color: rgb(210, 39, 39);
+        }
+    }
+
+    form{
+        width: 280px;
+        margin: 1rem auto;
+
+        textarea{
+            resize: none;
+            border-radius: 5px;
+            padding: 4px 8px;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+        // button{
+
+        // }
+    }
+
+    button{
+        color: #fff;
+        padding: 12px 2rem;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #474747;
+    }
+}

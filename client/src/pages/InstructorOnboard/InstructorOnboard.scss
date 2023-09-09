@@ -1,0 +1,41 @@
+@use '../../styles/style.scss' as *;
+
+.instructor-onboard_container{
+    @include grid-center;
+
+    h1{
+        margin: 2rem auto;
+    }
+
+    .instructor-onboard_form{
+        @include form;
+        width: 650px;
+
+        .input-field{
+            @include input-field;
+
+            .input-label{
+                @include label;
+            }
+            input{
+                @include input;
+            }
+            textarea{
+                @include input;
+                resize: none;
+                height: auto;
+            }
+            .input-error{
+                @include input-error;
+            }
+        }
+
+        .onboard-button--wrapper{
+            margin: 0 auto;
+            width: fit-content;
+            .button{
+                @include button;
+            }
+        }
+    }
+}

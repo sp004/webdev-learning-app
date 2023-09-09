@@ -1,0 +1,116 @@
+@use '../../../styles/style.scss' as *;
+
+.dropdown-nav,
+.side-navbar{
+    width: 200px;
+    height: fit-content;
+    background-color: $sidebar-bgColor;
+    position: absolute;
+    top: 100%;
+    right: 3%;
+    border-radius: 5px;
+    padding: 2px;
+    border: 2px solid #d7d7d7;
+    z-index: 9999;
+
+    .dropdown-nav--triangle{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        overflow: hidden;
+        box-shadow: 0 16px 10px -17px rgba(0,0,0,.5);
+        left: 82%;
+        top: -30px;
+
+        &::after{
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: $sidebar-bgColor;
+            transform: rotate(-45deg);
+            top: 20px;
+            left: 4px;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+            border-style: solid;
+            border-width: 1px 1px 1px 1px;
+            border-color: #d7d7d7;
+        }
+    }
+
+    .menus{
+        .menu{
+            padding: 12px 16px;
+            position: relative;
+
+            &:hover{
+                background-color: #fff;
+            }
+
+            &::after{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                height: 2px;
+                width: 100%;
+                z-index: 999;
+                background-color: #d7d7d7;
+            }
+
+            a{
+                width: 100%;
+            }
+        }
+        .mobile_nav-link{
+            display: none;
+            @include responsive(tabletL){
+                display: block;
+            }
+        }
+    }
+}
+
+// .side-navbar{
+//     position: fixed;
+//     top: 0;
+//     right: 0;
+//     width: 15rem;
+//     height: 100%;
+//     padding: 1rem 4px;
+//     z-index: 99;
+//     transition: all 1s ease-in;
+
+//     .side-navbar--close{
+//         position: absolute;
+//         right: 107%;
+//         top: 3%;
+//         background: #f9f9f9;
+//         height: 40px;
+//         width: 40px;
+//         border-radius: 50%;
+//         border: 1px solid #000;
+//     }
+//     .side-navbar--top{
+//         display: flex;
+//         justify-content: space-around;
+//         align-items: center;
+//         gap: 8px;
+//         margin-bottom: 1rem;
+//         img{
+//             width: 50px;
+//             height: 50px;
+//             border-radius: 50%;
+//             object-fit: cover;
+//         }
+//         .side-navbar--userinfo{
+//             &-name{
+//                 font-weight: 700;
+//             }
+//         }
+//         .side-navbar--account{
+//             font-weight: 700;
+//             margin-left: auto;
+//         }
+//     }
+// }

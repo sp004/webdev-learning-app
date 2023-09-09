@@ -1,0 +1,38 @@
+@use '../../styles/style.scss' as *;
+
+.filter-menu{
+    padding: 1rem 6px;
+    .filter-header{
+        @include flex-center;
+        justify-content: space-between;
+        span{
+            cursor: pointer;
+        }
+    }
+    .filter-options{
+        // visibility: visible;
+        display: block;
+        transition: all 2s ease-in-out;
+
+        .filter-option{
+            margin: 14px 0;
+            @include flex-center;
+            justify-content: flex-start;
+            gap: 6px;
+
+            .filter-option_label{
+                display: flex;
+                gap: 8px;
+
+                .filter-option_icon{
+                    display: flex !important;
+                    gap: 4px;
+                }
+            }
+        }
+    }
+    .filter-options--open{
+        // visibility: hidden;
+        display: none;
+    }
+}

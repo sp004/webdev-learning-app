@@ -1,0 +1,30 @@
+@use './variables' as *;
+
+@mixin responsive($breakpoint) {
+    @if $breakpoint == mobileS {
+      @media screen and (max-width: ($mobileS)) {
+        @content;
+      }
+    }
+    @if $breakpoint == mobileL {
+      @media screen and (max-width: ($mobileL)) {
+        @content;
+      }
+    }
+    @if $breakpoint == tabletS {
+      @media screen and (max-width: ($tabletS)) {
+        @content;
+      }
+    }
+    @if $breakpoint == tabletL {
+      @media screen and (max-width: ($tabletL)) {
+        @content;
+      }
+    }
+    @if $breakpoint == laptop {
+      @media screen and (max-width: ($laptop)) {
+        @content;
+      }
+    }
+  }
+  

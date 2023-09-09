@@ -1,0 +1,60 @@
+@use '../../../styles/style.scss' as *;
+
+.instructor-details{
+    margin-top: 2rem;
+
+    &--container{
+        .instructor-details--top{
+            .instructor-details--fullname{
+                color: $primary-color;
+            }
+            .instructor-details--designation{
+                color: gray;
+                font-weight: 500;
+            }
+        }
+        .instructor-details--middle{
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            @include responsive(mobileS){
+                flex-direction: column;
+            }
+            .avatar{
+                max-width: 120px;
+                height: 120px;
+                border: 1px solid $primary-color;
+                border-radius: 50%;
+                img{
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+            .allcourses-stats{
+                &--row{
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    margin: 8px 0;
+                }
+            }
+        }
+
+        .instructor-details--bottom{
+            .instructor-details--bio{
+                font-size: 14px;
+            }
+            .other-courses--container{
+                display: flex;
+                flex-direction: column;
+                margin: 2rem 0;
+                h2{
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}

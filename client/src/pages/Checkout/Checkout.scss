@@ -1,0 +1,43 @@
+@use '../../styles/abstracts/variables' as *;
+
+.checkout-container{
+    height: 70vh;
+    margin: 0 auto;
+
+    .checkout-summary{
+        width: 400px;
+        background-color: $tertiary-color;
+        height: fit-content;
+        box-shadow: $form-shadow;
+        padding: 1rem;
+    
+        .checkout-heading{
+            margin: 20px 0 4px;
+        }
+        hr{
+            background-color: $primary-color;
+            height: 1px;
+            border: none;
+        }
+        .checkout-courses{
+            flex-direction: column;
+            gap: 12px;
+            margin: 16px 0;
+
+            .checkout-course{
+                width: 100%;
+
+                .course-title{
+                    font-weight: 500;
+                }
+            }
+        }
+        .checkout-total{
+            p{
+                font-size: 1.6rem;
+                font-weight: 500;
+                margin: 12px 0;
+            }
+        }
+    }
+}

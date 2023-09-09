@@ -1,0 +1,89 @@
+@use '../../styles/style.scss' as *;
+
+.searched--container{
+    margin: 1rem auto;
+    padding: 0 3rem;
+    @include responsive(tabletL){
+        padding: 0 1rem
+    }
+    .search_header--container{
+        @include flex-center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        @include responsive(laptop){
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .search_header--title{
+            font-family: var(--font-family);
+        }
+        .customize-search{
+            @include responsive(laptop){
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-top: 10px;
+            }
+            .search_filter--button{
+                display: none;
+                cursor: pointer;
+                @include responsive(laptop){
+                    display: flex;
+                    align-items: center;
+                    gap: 2px;
+                }
+
+                span{
+                    font-weight: 600;
+                }
+            }
+            .search_sort--wrapper{
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                p{
+                    font-weight: 600;
+                    @include responsive(mobileS){
+                        display: none;
+                    }
+                }
+                select{
+                    border: none;
+                    outline: none;
+                    option{
+                        
+                    }
+                }
+            }
+        }
+    }
+
+    .searched_course--main{
+        display: grid;
+        grid-template-columns: repeat(4,minmax(0,1fr));
+        column-gap: 2rem;
+        padding-top: 1.5rem;
+        @include responsive(laptop){
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .filters-container{
+            display: block;
+            grid-column: span 1/span 1;
+            height: fit-content;
+            @include responsive(laptop){
+                display: none;
+            }
+        }
+        .searched_course--wrapper{
+            grid-column: span 3/span 3;
+            padding: 1rem;
+            @include responsive(laptop){
+                grid-column: span 1;
+                padding: 0;
+            }
+        }
+    }
+}

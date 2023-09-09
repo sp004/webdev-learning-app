@@ -1,0 +1,45 @@
+@use '../../styles/style.scss' as *;
+
+footer{
+    width: 100%;
+    padding: 2rem 3rem 4rem;
+    background-color: #292929;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 2rem;
+    @include responsive(tabletS){
+        padding: 1rem 12px 4rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .footer-logo{
+        display: flex;
+        width: 150px;
+        @include responsive(laptop){
+            width: 120px;
+        }
+        @include responsive(mobileL){
+            width: 180px;
+        }
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+    .footer-content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0.8;
+        p{
+            flex: 1;
+            color: #fff;
+            text-align: center;
+            a{
+                color: $primary-color;
+            }
+        }
+    }
+}

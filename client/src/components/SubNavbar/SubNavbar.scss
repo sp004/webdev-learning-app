@@ -1,0 +1,37 @@
+@use '../../styles/abstracts/responsive' as *;
+@use '../../styles/abstracts/variables' as *;
+
+.sub-navbar{
+    background-color: $dark-primary;
+    padding: 2rem 8rem 0;
+    @include responsive(tabletS){
+        padding: 2rem 8px 0;
+    }
+    // position: sticky;
+    // top: calc(100vh - 5rem);
+    // z-index: 999;
+    
+    h1{
+        color: #fff;
+    }
+    
+    .subnav-links{
+        display: flex;
+        gap: 1rem;
+        margin: 3rem auto;
+        background-color: #292929;
+        color: #fff;
+        font-size: 1.3rem;
+        font-weight: 600;
+        padding: 0;
+        a{
+            @include responsive(mobileL){
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+        .active{
+            border-bottom: 5px solid #ffffff;
+        }
+    }
+}

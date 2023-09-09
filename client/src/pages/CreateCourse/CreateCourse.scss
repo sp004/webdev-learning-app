@@ -1,0 +1,122 @@
+@use '../../styles/style.scss' as *;
+
+.create-course_container{
+    // @include flex-center-col;
+    @include grid-center;
+
+    .create-course_heading{
+        margin: 0 0 2rem 0;
+        text-align: center;
+        p{
+            font-weight: 500;
+        }
+    }
+
+    .create-course_form{
+        @include form;
+        // @include responsive(tabletL){
+        //     width: 95%;
+        // }
+
+        .input-field{
+            @include input-field;
+
+            label{
+                @include label;
+            }
+            input, select{
+                @include input;
+            }
+        }
+        .inline-fields{
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            gap: 3rem;
+            @include responsive(tabletS){
+                gap: 1rem;
+            }
+            div{
+                flex: 1;
+            }
+        }
+
+        .lecture-section{
+            margin: 1rem 0;
+
+            .remove-button{
+                margin: 0 auto;
+                width: fit-content;
+                background-color: $button-secondary;
+                border-radius: 6px;
+                color: #fff;
+            }
+        }
+
+        .preview-field{
+            @include flex-center;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin: 1rem 0;
+            @include responsive(tabletS){
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+            }
+            h4{
+                @include responsive(mobileL){
+                    font-size: 13px;
+                }
+            }
+            .preview-video{
+                height: 200px;
+                width: 400px;
+                @include responsive(mobileL){
+                    width: 100%;
+                }
+            }
+        }
+        .preview-confirm{
+            @include flex-center;
+            margin: 1rem 0;
+            justify-content: flex-start;
+            @include responsive(mobileL){
+                font-size: 11px;
+                gap: 4px
+            }
+            input[type='checkbox']{
+                accent-color: $primary-color;
+            }
+            p{
+                font-weight: 500;
+                font-size: 13px;
+            }
+        }
+
+        .create-course__button-container{
+            @include flex-center;
+            flex-wrap: wrap;
+            gap: 8px;
+            .create-course__button{
+                @include button;
+                width: fit-content;
+            }
+        }
+
+        // .create-course_button{
+        //     margin-right: 1rem;
+        // }
+
+        .confirm-message--alert{
+            color: #158c2b;
+            font-weight: 600;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 1rem;
+        }
+        input[type='button']{
+            @include button;
+            width: fit-content;
+        }
+    }
+}

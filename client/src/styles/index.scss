@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fauna+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,600;6..72,700;6..72,800&display=swap');
+// family=Josefin+Sans:wght@400;500;600;700
+:root{
+  // FONT FAMILY 
+  --font-family: "Poppins", sans-serif;
+  --font-family-text: "Fauna One", sans-serif;
+  --font-header: 'Newsreader', serif;
+
+  // COLOR 
+  --color-primary: #E65050;
+
+
+  // SIZE 
+  --text-size: 14px;
+  --text-heading: 20px;
+  --subheading-text: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: var(--font-family);
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+a, p, li, span, input[type="text"]{
+  font-size: var(--text-size);
+}
+
+button,
+input[type="button"]{
+  cursor: pointer;
+}
+
+// ============= UTILITY CLASSES =============
+
+// flex center 
+.--flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// flex space
+.space-bw{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// flex center - column 
+.--flex-center-col{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+//grid center
+.grid-center{
+  display: grid;
+  height: 100vh;
+  place-items: center;
+}
+
+.button-cart{
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 1rem;
+  margin-top: 6px;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover{
+    opacity: 0.9;
+  }
+}
+
+.asterisk{
+  color: red;
+}
+
+td{
+  font-size: var(--text-size);
+}
+
+.input-error{
+  color: red;
+  font-weight: 500;
+}
+
+
+
+
+

@@ -1,0 +1,39 @@
+@use '../../styles/style.scss' as *;
+
+.course-card--container{
+    @include course-card--container;
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+
+    .mycourse-card{
+        @include course-card;
+        // width: 240px;
+        min-height: 280px;
+        position: relative;
+
+        &--thumbnail{
+            // height: 150px;
+            width: 100%;
+
+        }
+        &--info{
+            
+        }
+    }
+    .coursecard-rating{
+        @include flex-center-col;
+        align-items: flex-end;
+        display: inline-flex;
+        position: absolute;
+        bottom: 1%;
+        right: 3%;
+        cursor: pointer;
+    
+        span{
+            color: #e65050;
+            text-decoration: underline;
+            font-weight: 500;
+            text-transform: none;
+            font-size: 12px;
+        }
+    }
+}

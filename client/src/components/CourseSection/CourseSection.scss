@@ -1,0 +1,40 @@
+@use '../../styles/style.scss' as *;
+@use '../../styles/abstracts/responsive' as *;
+
+.courses-display{
+    padding: 1rem;
+    @include responsive(mobileL){
+        padding: 0px;
+    }
+    &:first-child{
+        margin: 4rem auto 0;
+        @include responsive(mobileL){
+            margin: 3rem auto 0;
+        }
+    }
+    // background-color: #f7f7f7;
+
+    h1{
+        // margin-left: 2rem;
+    }
+
+    .courses-container{
+        @include course-card--container;
+        width: 100%;
+        margin: 2rem auto;
+        // display: grid;
+        // place-items: center;
+        // grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        // gap: 1rem;
+        @include responsive(tabletL){
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+        @include responsive(tabletS){
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        @include responsive(mobileL){
+            // grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            padding: 0 1rem;
+        }
+    }
+}

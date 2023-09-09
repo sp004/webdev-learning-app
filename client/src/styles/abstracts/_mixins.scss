@@ -1,0 +1,190 @@
+@use './variables' as *;
+@use './responsive' as *;
+
+@mixin flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-center-col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin grid-center{
+    display: grid;
+    place-items: center;
+}
+
+@mixin course-card--container{
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+    // grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+@mixin course-card{
+    // width: 240px;
+    // min-height: 320px;
+    height: fit-content;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    &--thumbnail{
+        // height: 170px;
+        width: 100%;
+
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            border-bottom: 1px solid #9e9e9e;
+        }
+    }
+    &--info{
+        padding: 0 8px 8px 8px;
+        text-transform: capitalize;
+        @include responsive(tabletS){
+            padding: 0 4px 4px 4px;
+        }
+        h4{
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            @include responsive(tabletS){
+                font-size: 14px;
+            }
+        }
+        p{
+            font-size: 12px;
+            margin-top: 3px;
+            color: #565656;
+        }
+        span{
+            font-size: 12px;
+            text-transform: capitalize;
+        }
+        .course-card--bottom{
+            @include flex-center;
+            justify-content: space-between;
+            padding: 4px 0;
+
+            .course-wishlist{
+                display: flex;
+            }
+        }
+    }
+    &:hover{
+        box-shadow: rgba(99, 99, 99, 0.6) 0px 2px 8px 0px;
+    }
+}
+
+@mixin course-rating--header{
+    @include flex-center;
+    gap: 6px;
+}
+
+@mixin course-actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+
+    button{
+        width: 90%;
+        background-color: #E65050;
+        color: #fff;
+        border: none;
+        outline: none;
+        padding: 8px 0;
+        font-weight: bold;
+    }
+}
+
+@mixin course-wishlist{
+    border: 2px solid #fff;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg{
+        cursor: pointer;
+        font-size: 20px;
+    }
+}
+
+@mixin form{
+    padding: 2rem 3rem;
+    width: 80%;
+    background-color: $tertiary-color;
+    border-radius: 5px;
+    // border: 2px solid $primary-color;
+    box-shadow: $form-shadow;
+    @include responsive(tabletL){
+        width: 95%;
+        padding: 1rem;
+    }
+}
+
+@mixin input-field{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 8px auto;
+}
+
+@mixin label{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+@mixin input{
+    height: 35px;
+    width: 100%;
+    padding: 4px 4px 4px 8px;
+    border-radius: 5px;
+    font-weight: 500;
+    border: 1px solid #111;
+    outline: none;
+}
+
+@mixin input-error{
+    color: red;
+    font-weight: 500;
+}
+
+@mixin profile-button--container{
+    margin: 0 auto;
+    width: fit-content;
+}
+
+@mixin button{
+    background-color: $button-primary;
+    color: #fff;
+    font-weight: 500;
+    padding: 10px 1rem;
+    margin-top: 6px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.9;
+    }
+    &:disabled{
+        background-color: $disabled-button;
+    }
+}
+
+  

@@ -1,0 +1,150 @@
+@use '../../styles/style.scss' as *;
+
+.course-details__wrapper{
+    margin: 0 auto;
+
+    .course-details__desktop-upper{
+        width: 100%;
+        min-height: 240px;
+        background-color: #222;
+        color: #fff;
+        padding: 2rem 6rem;
+        @include responsive(laptop){
+            padding: 1.5rem ;
+        }
+        @include responsive(tabletL){
+            display: none;
+        }
+        .desktop-only--header{
+            display: block;
+            @include responsive(tabletL){
+                display: none;
+            }
+        }
+    }
+
+    .course-details__sticky-navbar{
+        position: sticky;
+        height: 70px;
+        top: -0.1%;
+        z-index: 99;
+        background-color: #222;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.2s all ease-in;
+        @include responsive(tabletL){
+            display: none;
+        }
+        .desktop-only--header{
+            @include responsive(tabletL){
+                display: none;
+            }
+        }
+
+        // @include responsive(tabletL){
+        //     position: fixed;
+        //     top: unset;
+        //     bottom: 0;
+        //     height: 60px;
+        //     width: 100%;
+        // }
+    }
+
+    .course-details__mobile-upper{
+        display: none;
+        .mobile-only--header{
+            margin: 0 auto;
+            padding: 1rem 3rem;
+            @include responsive(tabletS){
+                padding: 1rem;
+            }
+
+            .course-price{
+                @include flex-center;
+                justify-content: flex-start;
+                gap: 6px;
+                h3{
+                    font-size: 2rem;
+                }
+            }
+            .course-actions{
+                @include course-actions;
+                padding: 4px 0;
+                justify-content: flex-start;
+            
+                .course-wishlist{
+                    @include course-wishlist
+                }
+            }
+            .course-buynow{
+                display: none;
+            }
+            .mobile-only--course-purchase{
+                position: relative;
+                .sticky-purchase--bar{
+                    position: fixed;
+                    height: 60px;
+                    bottom: 0;
+                    width: 100%;
+                    z-index: 99;
+                    background-color: #222;
+                    color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+            }
+        }
+        @include responsive(tabletL){
+            display: block;
+            width: 100%;    
+            background-color: #222;
+            color: #fff;
+            min-height: -moz-fit-content;
+            min-height: fit-content;
+        }
+    }
+
+    .course-details__lower{
+        display: grid;
+        grid-template-columns: repeat(7, 1fr) repeat(4, 1fr);
+        width: 90%;
+        margin: 1rem auto;
+        @include responsive(laptop){
+            width: 100%;
+            padding-right: 1rem;
+        }
+        @include responsive(tabletL){
+            padding: 0;
+        }
+
+        .course-details__lower-left{
+            grid-column: 1 / span 7; 
+            padding: 20px; 
+            .course-content{
+                margin-top: 2rem;
+    
+                h2, p{
+                    margin-bottom: 1rem;
+                }
+        
+                .accordion{
+                    width: 100%;
+                }
+            }
+            @include responsive(tabletL){
+                grid-column: 1 / span 11;
+            }
+            @include responsive(mobileL){
+                padding: 10px;
+            }
+        }
+        .course-details__lower-right{
+            grid-column: 8 / span 4;
+            width: 100%;
+        }
+    }
+
+}

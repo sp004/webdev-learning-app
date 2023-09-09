@@ -1,0 +1,75 @@
+{
+  "name": "webdevskool",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@hookform/resolvers": "^2.9.10",
+    "@mui/material": "^5.11.15",
+    "@mui/x-data-grid": "^6.0.4",
+    "@react-oauth/google": "^0.7.0",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@tanstack/react-query": "^4.32.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "axios": "^1.3.2",
+    "firebase": "^9.17.1",
+    "moment": "^2.29.4",
+    "query-string": "^8.1.0",
+    "react": "^18.2.0",
+    "react-accessible-accordion": "^5.0.0",
+    "react-countdown": "^2.3.5",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.42.1",
+    "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.7.1",
+    "react-modal": "^3.16.1",
+    "react-paginate": "^8.2.0",
+    "react-rating": "^2.0.5",
+    "react-redux": "^8.0.5",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.10.0",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.8",
+    "react-stripe-checkout": "^2.6.3",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.57.1",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.7.13",
+    "web-vitals": "^2.1.0",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\" --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "babel-jest": "^29.6.2",
+    "jest": "^27.5.1"
+  }
+}

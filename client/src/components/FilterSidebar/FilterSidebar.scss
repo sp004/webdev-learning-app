@@ -1,0 +1,30 @@
+@use '../../styles/style.scss' as *;
+
+.filter-sidebar__container{
+    position: absolute;
+    width: 18rem;
+    height: 100vh;
+    top: 0;
+    left: -18rem;
+    z-index: 999;
+    background-color: $sidebar-bgColor;
+    transition: left 0.3s ease-in-out;
+    .filter-sidebar__wrapper{
+        padding: 1rem;
+
+        .filter-sidebar__close-icon{
+            float: right;
+            cursor: pointer;
+            svg{
+                font-size: 1.5rem;
+            }
+        }
+        .filter-sidebar__main{
+            margin-top: 2rem;
+        }
+    }
+}
+
+.filter-sidebar__open{
+    left: 0;
+}

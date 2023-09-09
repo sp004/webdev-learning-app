@@ -1,0 +1,29 @@
+@use '../../styles/style.scss' as *;
+
+.purchase-history_container{
+    @include flex-center;
+    padding: 0 3rem;
+    margin: 3rem auto;
+    @include responsive(laptop){
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .button{
+        @include button;
+        width: fit-content;
+        background-color: #000;
+        
+    }
+    .refund-disable{
+        @include button;
+        width: fit-content;
+        background-color: lightgrey;
+    }
+
+    .refunded{
+        font-weight: 600;
+        color: #c9c9c9;
+        text-align: center;
+    }
+}

@@ -1,0 +1,36 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #474747;
+    padding: 1rem 3rem;
+    color: white;
+  
+    .logo {
+      h3 {
+        margin: 0;
+      }
+    }
+  
+    .menus {
+      display: flex;
+      align-items: center;
+  
+      .menu {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+  
+        h4 {
+          margin: 0 1rem;
+          font-weight: 400;
+        }
+
+        .logout{
+          cursor: pointer;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,26 @@
+.login{
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+
+  a{
+    text-align: center;
+    text-decoration: underline;
+    color: #eb4f2f;
+  }
+
+  button{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+    padding: 1rem 3rem;
+    margin: 10px auto 0;
+    cursor: pointer;
+    font-weight: 500;
+
+    .github{
+      font-size: 22px;
+    }
+  }
+}

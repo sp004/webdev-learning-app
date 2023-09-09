@@ -1,0 +1,86 @@
+@use '../../styles/style.scss' as *;
+
+.profile{
+    @include grid-center;
+    h1{
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    form{
+        @include form;
+        width: 620px;
+        background-color: $tertiary-color;
+        border: none;
+        @include responsive(tabletL){
+            width: 90%;
+        }
+
+        .user-avatar{
+            @include flex-center-col;
+            margin: 0 auto;
+
+            img{
+                height: 200px;
+                width: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 1px solid $primary-color;
+                @include responsive(mobileL){
+                    height: 140px;
+                    width: 140px;
+                }
+            }
+            .input-label{
+                @include button;
+                width: fit-content;
+                margin: 1rem auto;
+                font-size: 14px;
+            }
+            input[type="file"]{
+                display: none
+            }
+            .input-error{
+                @include input-error;
+            }
+        }
+        
+        .input-field{
+            @include input-field;
+
+            .input-label{
+                @include label;
+            }
+            input{
+                @include input;
+            }
+            textarea{
+                @include input;
+                resize: none;
+                height: auto;
+            }
+            .input-error{
+                @include input-error;
+            }
+        }
+
+        .profile-button--wrapper{
+            // @include profile-button--container;
+            display: flex;
+            gap: 6px;
+
+            .profile-save--button{
+                @include button;
+                width: 100%;
+                &:disabled{
+                    background-color: $disabled-button;
+                }
+            }
+            .profile-delete--button{
+                @include button;
+                background-color: $button-secondary;
+                width: 100%;
+            }
+        }
+    }
+}

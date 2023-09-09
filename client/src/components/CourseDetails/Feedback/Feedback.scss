@@ -1,0 +1,85 @@
+@use '../../../styles/style.scss' as *;
+
+.course_feedback{
+    margin: 4rem 0;
+
+    &--wrapper{
+        @include flex-center;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 1rem 1rem 0 0;
+        @include responsive(tabletL){
+            padding-top: 1rem;
+        }
+        @include responsive(mobileL){
+            flex-direction: column;
+        }
+
+        .course_feedback--left{
+            @include flex-center-col;
+
+            &-rating{
+                font-size: 3rem;
+                color: #e59819;
+            }
+            p{
+                font-weight: 600;
+                color: #e59819;
+                filter: brightness(0.7);
+            }
+            .star-icon{
+                @include responsive(mobileL){
+                    height: 20px;
+                }
+            }
+        }
+        .course_feedback--right{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 3px;
+            @include responsive(mobileL){
+                width: 100%;
+            }
+            .course_feedback--right-container{
+                @include flex-center;
+                gap: 8px;
+                flex: 1;
+                .course_feedback--percentline{
+                    // flex-grow: 1;
+                    width: 80%;
+                    &-container{
+                        position: relative;
+                        width: 100%;
+                        padding-bottom: 2px;
+                        .course_feedback--lightbg{
+                            display: flex;
+                            font-size: .75rem;
+                            line-height: 1rem;
+                            height: 8px;
+                            overflow: hidden;
+                            background-color: lightgray;
+                            .course_feedback--darkbg{
+                                white-space: nowrap;
+                                background-color: grey;
+                                // width: 66%;
+                            }
+                        }
+                    }
+                }
+                .course_feedback--star-icon{
+                    display: flex !important;
+                    gap: 2px;
+                    flex: 1;
+                    @include responsive(mobileL){
+                        gap: 0px;
+                    }
+                }
+                .course_feedback--percent{
+                    color: #1f1fc1;
+                    width: 40px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@use '../../styles/style.scss' as *;
+
+.course-card{
+    @include course-card;
+
+    &--info{
+        .course-card--rating{
+            @include course-rating--header;
+            margin-top: 4px;
+            justify-content: flex-start;
+            align-items: flex-end;
+            @include responsive(tabletS){
+                font-size: 10px;
+                margin: 1rem 0 8px;
+            }
+
+            p{
+                color: grey;
+                font-weight: 500;
+                font-size: 11px;
+            }
+        }
+    }
+
+    // &--bottom{
+        
+    // }
+}

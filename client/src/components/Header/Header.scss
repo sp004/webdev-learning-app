@@ -1,0 +1,93 @@
+@use '../../styles/abstracts/responsive' as *;
+
+// main{
+    // width: 100%;
+    // height: 80vh;
+    // display: flex;
+    // position: relative;
+    // overflow-x: hidden;
+
+    // .carousel-root {
+    //     background-color: #d6afaf;
+    //     height: 400px;
+
+        .slider-item{
+            height: 550px;
+            width: 100%;
+            @include responsive(mobileL){
+                height: 500px;
+            }
+            
+            .header-wrapper{
+                display: flex !important;
+                gap: 2rem;
+                justify-content: space-around;
+                margin: 0 6rem;
+                @include responsive(tabletL){
+                    margin: 0 2rem;
+                }
+                @include responsive(tabletS){
+                    flex-direction: column-reverse;
+                    margin:  0 auto;
+                }
+                @include responsive(mobileL){
+                    gap: 10px;
+                }
+
+                .header-info{
+                    align-self: center;
+                    @include responsive(tabletS){
+                        text-align: center;
+                    }
+                    &--title{
+                        font-size: 2.5rem;
+                        line-height: 1.3;
+                        @include responsive(tabletS){
+                            font-size: 1.8rem;
+                        }
+                    }
+                    &--description{
+                        font-size: 18px;
+                        line-height: 1.6;
+                        margin: 6px 0 20px;
+                        @include responsive(tabletS){
+                            font-size: 14px;
+                        }
+                    }
+                    a{
+                        background-color: #e6505066;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        padding: 8px 12px;
+                        border: 1px solid #000;
+                        &:hover{
+                            background: var(--color-primary);
+                            color: #fff;
+                        }
+                    }
+                }
+        
+                .header-img{
+                    height: 500px;
+                    width: 600px;
+                    @include responsive(tabletS){
+                        height: fit-content;
+                        width: 80%;
+                        margin: 0 auto;
+                    }
+                    @include responsive(mobileL){
+                        margin: 3rem auto;
+                    }
+        
+                    img{
+                        height: 100%;
+                        width: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+
+        }
+    //   }
+
+// }

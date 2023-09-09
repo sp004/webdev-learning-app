@@ -1,0 +1,169 @@
+@use '../../../styles/style.scss' as *;
+
+.course-action{
+    position: absolute;
+    display: block;
+    top: 20%;
+    height: fit-content;
+    width: 21.5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 999;
+    background-color: #fff;
+    @extend %common-styles;
+    @include responsive(laptop){
+        width: 18rem;
+        right: 2%;
+    }
+    
+    &--fixed{
+        position: sticky;
+        top: 7%;
+        z-index: 999;
+        opacity: 0;
+        animation: fadeIn 250ms linear 250ms forwards;
+        @extend %common-styles;
+
+        @keyframes fadeIn {
+            0%{
+                opacity: 0;
+            }
+            100% {
+                
+                opacity: 1; 
+            }
+        }
+    }
+    .desktop-only--action{
+        @include responsive(tabletL){
+            display: none;
+        }
+    }
+}
+
+.mobile-only--header{
+    .course-thumbnail{
+        position: relative;
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+        .course-play_icon{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 99;
+            svg{
+                font-size: 4rem;
+            }
+        }
+        .thumbnail-fade{
+            position: absolute;
+            bottom: 0%;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(180deg, transparent, rgba(37,37,37,0.2), #252525);
+        }
+    }
+    .additional-info{
+        // @include responsive(mobileL){
+        //     flex-direction: column;
+        //     align-items: flex-start;
+        // }
+        // p{
+        //     margin: 2px 0 6px 0;
+        // }
+    }
+    .enrollment-date{
+        @include flex-center;
+        gap: 4px;
+        margin: 10px auto 6px;
+    }
+}
+
+%common-styles {
+    .course-thumbnail{
+        position: relative;
+        // cursor: not-allowed;
+        // height: 220px;
+        padding: 1px;
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+        .course-play_icon{
+            position: absolute;
+            inset: 40%;
+            font-size: 4rem;
+            color: #000;
+            z-index: 9;         
+            svg{
+                fill: #fff;
+            }
+        }
+        .thumbnail-fade{
+            position: absolute;
+            bottom: 0%;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(180deg, transparent, rgba(37,37,37,0.2), #252525);
+        }
+    }
+    .ReactModalPortal{
+        height: 100vh;
+        width: 100vw;
+        .ReactModal__Overlay{
+            background-color: rgba(40,40,40, 0.9) !important;
+            z-index: 999;
+            .ReactModal__Content{
+                width: 60vw;
+                margin: auto;
+            }
+        }
+    }
+    .course-price{
+        padding: 4px 10px;
+        h3{
+            font-size: 2rem;
+        }
+    }
+    .course-actions{
+        @include course-actions;
+    
+        .course-wishlist{
+            @include course-wishlist;
+            border: 2px solid #000;
+        }
+    }
+    .course-buynow{
+        margin: 5px auto;
+        width: 94%;
+        display: grid;
+        background-color: #fff;
+        color: #000;
+        border: 2px solid $primary-color;
+        outline: none;
+        padding: 8px 0;
+        font-weight: bold;
+    }
+
+    .enrollment-date{
+        padding: 8px;
+        @include flex-center;
+        gap: 4px;
+        @include responsive(tabletL){
+            @include flex-center;
+        }
+
+        .info-icon{
+            font-size: 1.2rem;
+            color: $primary-color;
+        }
+        p{
+            font-weight: 600;
+            text-align: center;
+        }
+    }
+}

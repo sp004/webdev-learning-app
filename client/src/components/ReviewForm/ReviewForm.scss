@@ -1,0 +1,68 @@
+@use '../../styles/style.scss' as *;
+
+.review-form--container{
+    height: fit-content;
+    width: 540px;
+    background-color: #fff;
+    padding: 6px;
+    border-radius: 10px;
+    position: relative;
+
+    .review-form{
+        height: 100%;
+        padding: 1rem;
+        margin: 1rem 0;
+
+        .close-icon{
+            position: absolute;
+            top: 3%;
+            right: 2%;
+            color: var(--color-primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .my-rating{
+            margin: 12px 0 8px;
+            text-align: center;
+            h2{
+                @include responsive(mobileL){
+                    font-size: 1rem;
+                }
+            }
+            h4{
+                margin: 8px auto;
+                color: $primary-color;
+            }
+            .star-icon{
+                @include responsive(tabletS){
+                    height: 25px;
+                }
+            }   
+        }
+
+        textarea{
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            outline: none;
+            resize: none;
+        }
+
+        .profile-button--container{
+            @include profile-button--container;
+            @include flex-center;
+            gap: 6px;
+            width: 230px;
+
+            .review-save--button{
+                @include button;
+            }
+
+            .review-delete--button{
+                @include button;
+                background-color: #000;
+            }
+        }
+    }
+}

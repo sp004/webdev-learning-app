@@ -1,0 +1,99 @@
+@use '../../../styles/style.scss' as *;
+
+.course-purchase__container{
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 999;
+
+    .course-purchase__wrapper{
+        background-color: #222;
+        padding: 6px 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
+        height: 100%;
+        @include responsive(mobileL){
+            padding: 6px;
+        }
+
+        .course-info{
+            @include flex-center-col;
+            align-items: flex-start;
+
+            .course-details--title{
+                font-weight: 600;
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                @include responsive(mobileL){
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+            }
+
+            .course-enrollment--header{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 6px;
+                margin: 4px 0;
+                h4{
+                    @include responsive(mobileL){
+                        font-size: 11px;
+                    }
+                }
+        
+                .course-rating--header{
+                    @include course-rating--header;
+                    @include responsive(mobileS){
+                        gap: 2px;
+                    }
+                    .sticky-star--icons{
+                        .star-icon--light{
+                            @include responsive(mobileS){
+                                height: 9px;
+                            }
+                        }
+                    }
+                }
+        
+                .review-hyperlink{
+                    color: $primary-color;
+                    text-decoration: underline;
+                    @include responsive(mobileL){
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+
+        .course-purchase--info{
+            @include flex-center;
+            gap: 8px;
+            // margin: auto;
+            h2{
+                @include responsive(mobileL){
+                    font-size: 18px;
+                }
+            }
+            .course-purchase--button{
+                min-width: 90px;
+                color: #fff;
+                background-color: $primary-color;
+                padding: 10px 14px;
+                font-weight: 600;
+                outline: none;
+                border: none;
+                @include responsive(mobileL){
+                    min-width: 70px;
+                    padding: 6px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

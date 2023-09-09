@@ -1,0 +1,8 @@
+@use '../../styles/style.scss' as *;
+
+.course-card--container{
+    @include course-card--container;
+    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-auto-flow: column;
+}

@@ -1,0 +1,98 @@
+@use '../../../styles/style.scss' as *;
+
+.course-details--header{
+    // display: flex;
+    // align-items: center;
+    width: 60%;
+    @include responsive(tabletL){
+        width: 100%;
+    }
+    .course-details--info{
+        .course-details--title{
+            font-family: var(--font-family);
+            @include responsive(laptop){
+                font-size: 1.9rem
+            }
+        }
+        .course-details--desc{
+            @include responsive(laptop){
+                font-size: 1rem;
+            }
+        }
+    
+        .course-enrollment--header{
+            @include flex-center;
+            justify-content: flex-start;
+            gap: 6px;
+            margin: 4px 0;
+            @include responsive(mobileL){
+                flex-direction: column;
+                align-items: flex-start;
+            }
+    
+            .course-rating--header{
+                @include course-rating--header;
+            }
+    
+            .review-hyperlink{
+                color: var(--color-primary);
+                text-decoration: underline;
+            }
+        }
+    
+        h1, p{
+            text-transform: capitalize;
+        }
+        p{
+            font-size: 1.1rem;
+            margin: 10px 0 14px 0;
+        }
+    
+        .additional-info{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 2rem;
+            @include responsive(mobileL){
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0px;
+            }
+            p{
+                font-size: 14px;
+                @include responsive(mobileL){
+                    margin: 2px 0 6px 0;
+                }
+                a{
+                    color: var(--color-primary);
+                }
+            }
+        }
+        // @include responsive(tabletL){
+        //     position: absolute;
+        //     width: 90%;
+        //     top: 65%;
+        // }
+    }
+}
+
+.course-details__sticky-navbar{
+    padding-left: 1rem;
+    
+    .course-details--header{
+        width: 90%;
+
+        .course-details--title{
+            font-size: 1.1rem;
+            @include responsive(laptop){
+                font-size: 1rem;
+            }
+        }
+        .course-details--desc{
+            display: none;
+        }
+        .additional-info{
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,81 @@
+@use '../../styles/style.scss' as *;
+
+.search-courses{
+    @include flex-center-col;
+    align-items: flex-start;
+    gap: 2.5rem;
+    @include responsive(tabletS){
+        gap: 1.5rem;
+    }
+
+    .search-course_card{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        @include responsive(tabletS){
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        &--left{
+            display: flex;
+            gap: 10px;
+            @include responsive(tabletS){
+                flex-direction: column;
+            }
+
+            img{
+                width: 160px;
+                object-fit: contain;
+                @include responsive(tabletS){
+                    width: unset;
+                }
+            }
+            .search-course_detail{
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                &--title{
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+                &--desc{
+                    font-size: 14px;
+                }
+                &--lower{
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    @include responsive(mobileS){
+                        gap: 3px;
+                    }
+                    .search-course_rating{
+                        font-weight: 500;
+                        font-size: 13px;
+                        @include responsive(mobileS){
+                            font-size: 12px;
+                        }
+                    }
+                    span{
+                        font-size: 12px;
+                        text-transform: capitalize;
+                        font-weight: 500;
+                        // color: grey;
+                        @include responsive(mobileS){
+                            font-weight: normal;
+                            font-size: 11px;
+                        }
+                    }
+                }
+            }
+        }
+        &--right{
+            
+        }
+    }
+}

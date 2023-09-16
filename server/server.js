@@ -18,8 +18,6 @@ import wishlistRouter from './routes/wishlistRoute.js'
 import orderRouter from './routes/orderRoute.js'
 import reviewRouter from './routes/reviewRoute.js'
 import cartRouter from './routes/cartRoute.js'
-import adminRouter from './routes/Admin/adminRoute.js'
-import adminLoginRouter from './routes/Admin/adminLoginRoute.js'
 // import session from 'express-session'
 import cookieSession from 'cookie-session'
 // import { limiter } from './middlewares/rateLimiter.js'
@@ -79,8 +77,6 @@ app.use('/api/review', reviewRouter)
 app.use('/api/cart', cartRouter)
 app.use('/api/wishlist', wishlistRouter)
 app.use('/api/payment', checkoutRouter)
-app.use('/api/admin', adminRouter)
-app.use('/admin/auth', adminLoginRouter)
 
 app.get('*', (req, res) => res.send('Page not found'))
 

@@ -32,7 +32,7 @@ export const getCourse = asyncHandler(async(req, res, next) => {
         //     model: Instructor,
         //     select: "designation bio",
         // },
-    const course = await Course.findById(courseId).populate('createdBy', 'fullName avatar email').exec()
+    const course = await Course.findById(courseId).populate('createdBy', 'fullName avatar email')
     if(!course) return next(ErrorHandler(404, 'No course found!!!'))
 
     // Get the user ID of the course creator (instructor)

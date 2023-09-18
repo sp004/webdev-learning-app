@@ -5,7 +5,6 @@ import { axiosPrivate, axiosPublic } from "../../api/apiMethod";
 export const addToWishlist = createAsyncThunk("cart/addToWishlist", async (courseId, thunkApi) => {
     try {
         const {data} = await axiosPublic.post(`/wishlist/add/${courseId}`, {withCredentials: true})
-        console.log("wish slice ===> ",data)
         return data
     } catch (error) {
         const statusCode = error?.response?.status

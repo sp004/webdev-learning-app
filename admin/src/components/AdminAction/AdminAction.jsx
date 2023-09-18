@@ -6,7 +6,6 @@ import { toast } from "react-hot-toast";
 import './AdminAction.scss'
 
 const AdminAction = ({ id }) => {
-  console.log("😎😎", id);
   const [openRejectWindow, setOpenRejectWindow] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
   const [isApproveLoading, setIsApproveLoading] = useState(false);
@@ -25,9 +24,7 @@ const AdminAction = ({ id }) => {
       },
       { cache: "no-cache" }
     );
-    console.log("😎😎", res);
-    // const data = await res.json()
-    // console.log(data)
+
     if (!res.ok){
       setIsApproveLoading(false)
       throw new Error("Something went wrong")
@@ -54,7 +51,7 @@ const AdminAction = ({ id }) => {
       },
       { cache: "no-cache" }
     );
-console.log(res)
+
     if (!res.ok) {
       // throw new Error("Something went wrong");
       setIsRejectLoading(false)

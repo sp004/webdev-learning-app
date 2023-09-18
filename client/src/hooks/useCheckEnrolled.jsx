@@ -12,7 +12,6 @@ const useCheckEnrolled = (courseId) => {
             setIsEnrolled(false)
             const fetchEnrolledDetails = async () => {
                 const {data} = await axiosPublic.get(`/enrolledCourse/enrolledOn/${courseId}`)
-                console.log("0000000000000", data)
                 setEnrolledDate(data.data)
                 data?.data && setIsEnrolled(true)
             }

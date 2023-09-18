@@ -4,7 +4,6 @@ import React from "react";
 import { notFound } from "next/navigation";
 import AdminAction from "@/components/AdminAction/AdminAction";
 import "./CourseDetails.scss";
-// import useSWR from 'swr'
 
 async function getCourse(id) {
   console.log(id);
@@ -13,7 +12,6 @@ async function getCourse(id) {
   });
   // console.log(await res.json())
   const data = await res.json();
-  console.log(data);
   if (!res?.ok) {
     return notFound();
   }
@@ -29,10 +27,6 @@ export async function generateMetadata({ params }) {
 }
 
 const CoursePage = async ({ params }) => {
-  // const fetcher = (...arg) => fetch(...arg).then(res => res.json())
-  // const {data: course, error, loading} = useSWR(`/api/course/${params.id}`, fetcher)
-  // console.log("😴😴😴", params)
-
   const course = await getCourse(params.id);
   if (!course) {
     return <p className="loader">No course found!!!</p>;

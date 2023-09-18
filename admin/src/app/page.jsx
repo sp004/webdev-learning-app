@@ -10,26 +10,7 @@ import Link from 'next/link'
 // import { useEffect } from 'react'
 
 const LoginPage = async () => {
-  // const {data: session, status} = useSession()
-  // const router = useRouter()
-  // console.log("🤣", status)
 
-  // useEffect(() => {
-  //   if (status === 'authenticated') {
-  //     router?.push('/pending-approval')
-  //   }
-  // }, [status, router])
-
-  // if (status === "loading" && session) {
-  //   return <p className='loader'>Welcome to Admin Panel...</p>;
-  // }
-  // const session = await getServerSession(options)
-  // console.log("🤣", session?.user)
-
-  // if(!session) {
-  //   return redirect('/api/auth/signin/callbackUrl=/pending-approval')
-  // }
-  // if (status === "unauthenticated") {
     return (
       <div className='login'>
         <div> 

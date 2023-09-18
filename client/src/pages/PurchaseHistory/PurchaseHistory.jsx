@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SubNavbar } from "../../components";
 import { accountSubNavLinks } from "../../utils";
 import "./PurchaseHistory.scss";
@@ -12,32 +12,15 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 const PurchaseHistory = () => {
   useDocumentTitle(`Purchased History - Webdev Skool`)
   const [orders, setOrders] = useState([]);
-  // const [isRefundProcessing, setIsRefundProcessing] = useState(false)
+
   const [pageSize, setPageSize] = useState(10);
   const queryClient = useQueryClient();
 
   const fetchOrder = async () => {
     const { data: {orders} } = await axiosPublic.get(`/order/userOrder`);
     return orders
-
-    // setOrders(
-      // data?.courses?.map((order) => {
-      //   return {
-      //     id: order?.courseId._id,
-      //     courseId: order?.courseId._id,
-      //     amount: order?.courseId?.price,
-      //     title: order?.courseId?.title,
-      //     ...order,
-      //   };
-      // })
-    // );
-    // return orders
   };
-  // useEffect(() => {
-  //   fetchOrder();
-  // }, []);
-  
-  // console.log("*******", orders)
+
   const { isLoading } = useQuery({
     queryKey: ['order-history'],
     queryFn: () => fetchOrder(),
@@ -67,22 +50,8 @@ const PurchaseHistory = () => {
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message)
-      console.log(error?.response)
     }
   })
-
-  // const handleRefund = async (paymentId, amount) => {
-  //   try {
-  //     const {data} = await axiosPublic.post(`/payment/refund`, {paymentId, amount})
-  //     console.log("🏁🌍", data)
-  //     data?.status === 'Success' && toast.success(data?.message)
-  //   } catch (error) {
-  //     toast.error(error?.response?.data?.message)
-  //     console.log(error?.response)
-  //   }
-  // }
-
-
 
   const orderColumn = [
     {
@@ -92,20 +61,6 @@ const PurchaseHistory = () => {
       flex: 1,
       sortable: false
     },
-    // {
-    //   field: "courseId",
-    //   headerName: "Course ID",
-    //   minWidth: 100,
-    //   sortable: false,
-    //   flex: 1,
-    //   renderCell: (params) => {
-    //     return (
-    //       <Link to={`/course/${params?.row?.courseId}`}>
-    //         {params?.row?.courseId}
-    //       </Link>
-    //     );
-    //   },
-    // },
     {
       field: "title",
       headerName: "Title",

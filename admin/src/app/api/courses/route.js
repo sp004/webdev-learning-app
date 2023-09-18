@@ -8,7 +8,6 @@ connectDB();
 export const GET = async () => {
     try {
         const courses = await Course.find({approved: 'no'})
-        console.log(courses)
         const instructor = await Promise.all(courses.map(item => User.findById(item?._doc?.createdBy))) 
 
         const resultedCourses = courses.map((c, i) => ({

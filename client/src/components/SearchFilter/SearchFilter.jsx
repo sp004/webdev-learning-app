@@ -16,7 +16,6 @@ import { categoryFilters, levelFilters } from "../../utils/data";
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 const SearchFilter = () => {
-  // const location = useLocation();
   const [isExpanded, setIsExpanded] = useState(false)
   const [isLevelExpanded, setIsLevelExpanded] = useState(false)
   const [isCategoryExpanded, setIsCategoryExpanded] = useState(false)
@@ -24,21 +23,8 @@ const SearchFilter = () => {
   const navigate = useNavigate()
 
   const [searchParams] = useSearchParams();
-  // const query = searchParams.get('query'); 
-  // console.log(location?.search)
-//   const {courses, loading, error, reFetch} = useFetchCourses(`/course/search${location?.search}`)
-// console.log(courses)
-
-  // let params = new URLSearchParams(location.search)
-  // params.get("query")
-  // params.get("rating")
-
-  // console.log(location)
-
 
   const changeHandler = (valueKey, id) => {
-    // console.log("🧧🎑", rating, level)
-    // console.log("🥽🎀", valueKey, id)
     const current = qs.parse(searchParams.toString());
     const query = {
       ...current,
@@ -53,7 +39,6 @@ const SearchFilter = () => {
     navigate(url)
   }
 
-// console.log(rating, level)
   return (
     <>
       <div className="filter-menu">

@@ -3,7 +3,6 @@ import './CourseAction.scss'
 import CourseThumbnail from "./CourseThumbnail";
 import CourseActionInfo from "./CourseActionInfo";
 
-
 export const customStyles = {
   content: {
     position: "absolute",
@@ -29,8 +28,8 @@ const CourseAction = ({ course, isScrollDown }) => {
   return (
     <div className={`course-action ${isScrollDown ? 'course-action--fixed' : ''}`}>
       <div className="desktop-only--action">
-      <CourseThumbnail course={course} />
-      <CourseActionInfo course={course} />
+        <CourseThumbnail course={course} />
+        <CourseActionInfo course={course} />
       </div>
     </div>
   );

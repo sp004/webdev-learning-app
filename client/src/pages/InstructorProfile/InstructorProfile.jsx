@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 const InstructorProfile = () => {
   useDocumentTitle(`Instructor Profile - Webdev Skool`)
   const { _id } = useSelector((state) => state.auth.currentUser);
-  const { isLoading, instructor, isSuccess } = useSelector(state => state.instructor);
+  const { isLoading, instructor } = useSelector(state => state.instructor);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,8 +42,6 @@ const InstructorProfile = () => {
 
   const [designation, bio] = watch(["designation", "bio"]);
 
-  console.log(instructor);
-
   const editInstructorHandler = async () => {
     try {
       const res = await axiosPublic.patch(
@@ -51,7 +49,6 @@ const InstructorProfile = () => {
         { designation, bio },
         { withCredentials: true }
       );
-      console.log(res);
       if (res?.status === 200) {
         toast.success("Instructor updated successfully");
         dispatch(getInstructor(_id));
@@ -59,7 +56,6 @@ const InstructorProfile = () => {
       }
     } catch (error) {
       toast.error("Something went wrong");
-      console.log(error);
     }
   };
 

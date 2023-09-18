@@ -9,20 +9,6 @@ const OrderSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Course",
     },
-    // course: 
-    //     {
-    //         courseId: {
-    //             type: mongoose.Types.ObjectId,
-    //             ref: "Course",
-    //         },
-    //         title: {
-    //             type: String
-    //         },
-    //         amount: {
-    //             type: Number
-    //         }
-    //     }
-    // ,
     orderId: {
         type: String,
     },
@@ -35,7 +21,7 @@ const OrderSchema = new mongoose.Schema({
     },
     refundAvailableTill: {
         type: Date,
-        default: new Date(Date.now() + 86400000), //  3600000
+        default: new Date(Date.now() + 86400000),
     },
     status: {
         type: String,

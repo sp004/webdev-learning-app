@@ -6,7 +6,6 @@ connectDB()
 
 export const GET = async (request, {params}) => {
     const {id} = params
-    console.log("😋😋", id)
     try {
         const course = await Course.findById(id).where({approved: 'no'})
         console.log(course)

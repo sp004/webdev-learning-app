@@ -1,16 +1,9 @@
-
-
-
-
-
 export {default as Navbar} from './Navbar/Navbar'
 export {default as InstructorNavbar} from './InstructorNavbar/InstructorNavbar'
 export {default as Header} from './Header/Header'
 export {default as CourseSection} from './CourseSection/CourseSection'
 export {default as RequireAuth} from './ProtectedRoutes/RequireAuth'
 export {default as InstructorRoute} from './ProtectedRoutes/InstructorRoute'
-// export {default as EditInstructorProfile} from '../components/EditInstructorProfile/EditInstructorProfile'
-// export {default as EditUserProfile} from '../components/EditUserProfile/EditUserProfile'
 export {default as MenuBox} from './Navbar/MenuBox/MenuBox'
 export {default as CourseCard} from './CourseCard/CourseCard'
 export {default as CourseThumbnail} from './CourseDetails/CourseAction/CourseThumbnail'
@@ -30,3 +23,4 @@ export {default as PublishedCourse} from './CreateCourse/UploadedCourse/Publishe
 export {default as SearchFilter} from './SearchFilter/SearchFilter'
 export {default as SearchedCourseCard} from './SearchedCourseCard/SearchedCourseCard'
 export {default as CoursePurchaseAction} from './CourseDetails/CoursePurchaseAction/CoursePurchaseAction'
+export {default as Loading} from './Loading/Loading'

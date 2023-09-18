@@ -2,10 +2,9 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { v4 } from "uuid";
 import { storage } from "../../firebase";
+import toast from "react-hot-toast";
 
 const UploadContent = ({ prevHandler, nextHandler}) => {
-  // const [video, setVideo] = useState(null)
-  // const [thumbnail, setThumbnail] = useState(null)
   const [thumbnailLink, setThumbnailLink] = useState("")
   const [videoLink, setVideoLink] = useState("")
   const [uploadItems, setUploadItems] = useState({
@@ -20,7 +19,6 @@ const UploadContent = ({ prevHandler, nextHandler}) => {
   const changeUploadItems = async (e) => {
     const {name, files} = e.target
     setUploadItems((prev) => ({...prev, [name]: files[0]}))
-    console.log(uploadItems)
 }
 
   //upload thumbnail to firebase storage
@@ -33,17 +31,15 @@ const UploadContent = ({ prevHandler, nextHandler}) => {
     }
     try {
       const thumbnailRef = ref(storage, `thumbnails/${uploadItems?.thumbnail?.name + v4()}`)
-      console.log(thumbnailRef)
       const snapshot = await uploadBytes(thumbnailRef, uploadItems?.thumbnail)
       setThumbnailLink(await getDownloadURL(snapshot.ref))
     } catch (error) {
-      console.error(error)
+      toast.error('Something went wrong')
     }
   }
 
   //upload video to firebase storage
   const uploadVideo = async() => {
-    console.log(uploadItems?.video)
     setUploadError({thumbError: '', videoError: ''})
     // setThumbnail(e.target.files[0])
     if(uploadItems?.video?.size > 10000000){
@@ -52,21 +48,18 @@ const UploadContent = ({ prevHandler, nextHandler}) => {
     }
     try {
       const videoRef = ref(storage, `videos/${uploadItems?.video?.name + v4()}`)
-      console.log(videoRef)
       const snapshot = await uploadBytes(videoRef, uploadItems?.video)
       setVideoLink(await getDownloadURL(snapshot.ref))
     } catch (error) {
-      console.error(error)
+      toast.error('Something went wrong')
     }
   }
 
   useEffect(() => {
     if(uploadItems?.thumbnail){
-        console.log("upload thumb call")
         uploadThumbnail()
     }
     if(uploadItems?.video){
-      console.log("upload video call")
       uploadVideo()
     }
   }, [uploadItems.thumbnail, uploadItems.video])

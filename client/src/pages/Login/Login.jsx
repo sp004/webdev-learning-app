@@ -11,7 +11,6 @@ import Swal from 'sweetalert2'
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
-// import 'sweetalert2/src/sweetalert2.scss'
 
 const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required("Email is required").trim(),
@@ -35,17 +34,14 @@ const Login = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {isSuccess} = useSelector(state => state.auth)
   const [error, setError] = useState('')
   const [status, setStatus] = useState(null)
-  const [openInstructions, setOpenInstructions] = useState(false)
 
   const loginHandler = async () => {
     try {
       const res = await axiosPublic.post('/auth/login', {email})
       setStatus(res?.status)
     } catch (error) {
-      // console.error(error?.response?.data?.message)
       setError(error?.response?.data?.message)
       setTimeout(() => {
         setError('')  
@@ -56,26 +52,15 @@ const Login = () => {
   useEffect(() => {
     const sendOtp = async () => { 
       const res = await axiosPublic.post(`/auth/sendotp/${email}`)
-      console.log(res.data)
 
       if(res.data?.otp){
         navigate(`/loginOTP/${email}`, {state: res?.data?.otp})
       }
     }
-    
-
     status === 200 && sendOtp()
   }, [navigate, status, email])
 
-  // useEffect(() => {
-  //   if(isSuccess){
-  //     navigate('/', {replace: true})
-  //   }
-  //   dispatch(reset())
-  // }, [navigate, isSuccess, dispatch])
-
   const googleLoginHandler = async (credentialResponse) => {
-    console.log(credentialResponse)
     await dispatch(loginWithGoogle({userToken: credentialResponse.credential}))
   }
   

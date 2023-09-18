@@ -13,7 +13,7 @@ export const getInstructor = createAsyncThunk("instructor/getInstructor", async 
     try {
         return await fetchInstructor(id)
     } catch (error) {
-        console.log(error.response)
+        // console.log(error.response)
         const message = error?.response?.data?.message    
         return thunkApi.rejectWithValue(message)
     }
@@ -24,7 +24,7 @@ export const editInstructor = createAsyncThunk("instructor/editInstructor", asyn
     try {
         return await updateInstructor()
     } catch (error) {
-        console.log(error.response)
+        // console.log(error.response)
         const message = error?.response?.data?.message    
         return thunkApi.rejectWithValue(message)
     }
@@ -48,13 +48,11 @@ const InstructorSlice = createSlice({
             state.isLoading = true
         })
         .addCase(getInstructor.fulfilled, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.instructor = payload.instructor
             state.isSuccess = true
         })
         .addCase(getInstructor.rejected, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.instructor = null
             state.message = payload
@@ -65,7 +63,6 @@ const InstructorSlice = createSlice({
             state.isLoading = true
         })
         .addCase(editInstructor.fulfilled, (state, {payload}) => {
-            console.log(payload)
             state.instructor = payload
             state.isSuccess = true
         })

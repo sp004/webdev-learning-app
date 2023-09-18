@@ -5,7 +5,6 @@ import './LoginOTP.scss';
 import { authLogin, reset } from "../../features/auth/authSlice";
 import { axiosPublic } from "../../api/apiMethod";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
-// import Countdown from "react-countdown";
 
 const LoginOTP = () => {
   useDocumentTitle(`Enter OTP - Webdev Skool`)
@@ -16,7 +15,7 @@ const LoginOTP = () => {
   const navigate = useNavigate()
   const email = location.pathname.split('/')[2]
   const refArr = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
-console.log(location)
+
   const storedEndTime = localStorage.getItem('endTime');
   const [endTime, setEndTime] = useState(storedEndTime ? JSON.parse(storedEndTime) : null);
 
@@ -34,8 +33,7 @@ console.log(location)
 
   const resendOtpHandler = async () => {
     // await axiosPublic.post('/auth/login', {email})
-    const res = await axiosPublic.post(`/auth/sendotp/${email}`)
-      console.log(res.data)
+    await axiosPublic.post(`/auth/sendotp/${email}`)
   }
 
   useEffect(() => {
@@ -44,7 +42,6 @@ console.log(location)
     }
     dispatch(reset())
   }, [navigate, currentUser, dispatch])
-
 
   const handleChange = (e, index) => {
     const { value } = e.target;
@@ -71,14 +68,6 @@ console.log(location)
     setOtp(newOtp);
     refArr[0].current.focus();
   };
-
-  // const renderer = ({ hours, minutes, seconds, completed }) => {
-  //   if (completed) {
-  //     return navigate('/login', {replace: true});
-  //   } else {
-  //     return <span>0{minutes}:{seconds}</span>;
-  //   }
-  // };
 
   return (
     <div className="grid-center loginwithotp-wrapper">
@@ -110,13 +99,9 @@ console.log(location)
               />
             ))}
           </div>
-          {/* <Countdown date={Date.now() + 120000} /> */}
 
           <p style={{color: 'red'}}>{message}</p>
         </div>
-        {/* <Countdown date={Date.now() + 120000}>
-          <span onClick={resendOtpHandler} className="resend-otp">Resend OTP</span>
-        </Countdown> */}
         <button className="button-cart">Login</button>
       </form>
     </div>

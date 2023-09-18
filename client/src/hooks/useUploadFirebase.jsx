@@ -2,6 +2,7 @@ import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from 'fire
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { storage } from '../firebase'
+import toast from 'react-hot-toast'
 
 const useUploadFirebase = ({currentUser, prev, folder}) => {
   const [uploadError, setUploadError] = useState({
@@ -33,9 +34,9 @@ const useUploadFirebase = ({currentUser, prev, folder}) => {
         const thumbnailRef = ref(storage, `thumbnails/${thumbnail?.name + currentUser?._id}`)
         const snapshot = await uploadBytes(thumbnailRef, thumbnail)
         setLink(await getDownloadURL(snapshot.ref))
-        console.log(link)
       } catch (error) {
-        console.error(error)
+        toast.error('Something went wrong')
+        // console.error(error)
       }
     }
 

@@ -14,10 +14,8 @@ export const calculateEnrollmentStat = (arr) => {
         } else if (status === 'Refunded') {
             acc[courseId].totalRefund++;
         }
-
         return acc;
     }, {});
-    console.log("result ====> ", result)
     return Object.values(result);
 }
   

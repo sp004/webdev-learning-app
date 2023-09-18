@@ -30,7 +30,6 @@ export const onboardInstructor = asyncHandler(async(req, res, next) => {
 })
 
 export const getInstructor = asyncHandler(async(req, res, next) => {
-    console.log("😴", req.params)
     const user = await User.findOne({_id: req.params?.userId.toString()})
     if(!user) return next(ErrorHandler(404, "Instructor not found"))
 
@@ -43,7 +42,7 @@ export const getInstructor = asyncHandler(async(req, res, next) => {
 
 export const editInstructor = asyncHandler(async(req, res, next) => {
     const {designation, bio} = req.body
-    // console.log(designation, bio)
+
     //find user's info by it's id
     const instructor = await Instructor.findOne({userId: req.user.id.toString()}).exec()
     if(!instructor) return next(ErrorHandler(404, 'No user found'))
@@ -52,7 +51,6 @@ export const editInstructor = asyncHandler(async(req, res, next) => {
     instructor.bio = bio || instructor.bio
         
     await instructor.save()
-
     res.status(200).json({instructor, message: 'Instructor updated successfully'})
 })
 
@@ -60,17 +58,14 @@ export const editInstructor = asyncHandler(async(req, res, next) => {
 export const getInstructorStats = asyncHandler(async(req, res, next) => {
     const {userId} = req.params
     const allPublichedCourses = await Course.find({createdBy: userId.toString()}).where({approved: 'yes'}).select('_id')
-    console.log("🛺🚌", allPublichedCourses)
 
     const allCollectiveReviews = await (await Promise.all(allPublichedCourses?.map(c => Review.find({courseId: c?._id}).select('rating')))).flat(1)
-    console.log("🚲🛴", allCollectiveReviews)
+
     const noOfReviews = allCollectiveReviews?.length
-    // const avgRating = allCollectiveReviews?.reduce((acc, cv) => acc + cv.rating, 0)
+
     const avgRating = allCollectiveReviews?.map(c => parseFloat(c.rating))
-    console.log("⛽", avgRating)
-    // const totalEnrolledStudents = await (await Promise.all(allPublichedCourses?.map(c => EnrolledCourse.find({courseId: c._id}).countDocuments()))).flat(1)
+    
     const totalEnrolledStudents = await (await Promise.all(allPublichedCourses?.map(c => EnrolledCourse.countDocuments({courseId: c._id})))).flat(1)
-    console.log("🚇🚟", totalEnrolledStudents)
 
     res.status(200).json({avgRating, noOfReviews, totalEnrolledStudents})
 })
@@ -78,16 +73,13 @@ export const getInstructorStats = asyncHandler(async(req, res, next) => {
 //get all courses by an instructor
 export const allCoursesByInstructor = asyncHandler(async(req, res, next) => {
     const {userId, loggedinUserId} = req.params
-    console.log("🏳🏳‍🌈🚩", req.params)
     const courses = await Course.find({createdBy: userId.toString()}).where({approved: 'yes'}).populate('createdBy', 'fullName')
 
     if(loggedinUserId !== 'undefined'){
-        console.log("++++------+++++++")
         const coursesWithEnrollmentData = await checkEnrolled(courses, loggedinUserId)
         const coursesWithRating = await getCoursesAvgRating(coursesWithEnrollmentData)
         res.status(200).json({courses: coursesWithRating})
     }else{
-        console.log("++++=========+++++++")
         const coursesWithRating = await getCoursesAvgRating(courses)
         const modeifiedCourses = coursesWithRating?.map(c => {
             return {

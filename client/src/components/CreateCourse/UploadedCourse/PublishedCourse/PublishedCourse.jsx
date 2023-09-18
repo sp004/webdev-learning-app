@@ -1,6 +1,5 @@
 import React from 'react'
 import './PublishedCourse.scss'
-import CourseCard from '../../../CourseCard/CourseCard'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Rating from 'react-rating'
@@ -66,7 +65,6 @@ const PublishedCourse = ({courses}) => {
                     </p>
                   </div>
                   <div className="stat-data">
-                    {console.log(courseItem)}
                     <p>
                       Total Earning <strong>Rs. {courseItem?.totalEnrolled ? courseItem?.price * courseItem?.totalEnrolled : 0}</strong>
                     </p>

@@ -1,12 +1,8 @@
 // "use client"
 
-// import useSWR from 'swr'
-// import { useSession } from "next-auth/react"
 import Image from 'next/image'
 import './PendingApproval.scss'
 import Link from 'next/link'
-// import { useRouter } from 'next/navigation'
-// import { useEffect } from 'react'
 
 const getUnapprovedCourses = async () => {
     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/courses`, {cache: 'no-cache'})
@@ -21,21 +17,7 @@ export const metadata = {
 }
 
 const PendingApprovalPage = async () => {
-    // const {data: session, status} = useSession()
-    // const router = useRouter()
-    // console.log("🤩", session, status)
-
-    // const fetcher = (...args) => fetch(...args).then(res => res.json())
-    // const { data: courses, error, isLoading } = useSWR('/api/courses', fetcher)
-    
-    // useEffect(() => {
-        //     if (status !== 'authenticated') {
-            //       router?.push('/')
-            //     }
-            // }, [status, router])
-            
     const courses = await getUnapprovedCourses()
-    // console.log("🤗", courses)
 
     if(courses?.length === 0) {
         return <p className='loader'>No pending courses</p>

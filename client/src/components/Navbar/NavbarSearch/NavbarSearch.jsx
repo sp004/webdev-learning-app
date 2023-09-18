@@ -9,8 +9,6 @@ const NavbarSearch = () => {
   const [suggestedResults, setSuggestedResults] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  const { course, isSuccess, message } = useSelector((state) => state.course);
-
   const navigate = useNavigate();
 
   const debounce = (func, delay) => {
@@ -36,7 +34,7 @@ const NavbarSearch = () => {
       }
     };
     // Debounce the fetchAllCourses function to limit API calls with each key stroke
-    const delayedFetchAllCourses = debounce(fetchAllCourses, 500); // Adjust the delay as needed (e.g., 300ms)
+    const delayedFetchAllCourses = debounce(fetchAllCourses, 500); // Adjust the delay
     delayedFetchAllCourses();
 
     // Cleanup function to clear the timeout on component unmount
@@ -50,23 +48,10 @@ const NavbarSearch = () => {
 
   const searchHandler = async (e) => {
     e.preventDefault();
-    console.log(query);
     navigate(`/course/search?query=${query}`);
     setQuery("");
     setSuggestedResults([]);
-    // try {
-    //     const {data} = await axiosPublic.get(`/course/search?title=${query}`, {withCredentials: true})
-    //     console.log("♈🚫", data)
-    //     setSearchedCourses(data?.course)
-    //     data?.success && navigate(`/course/search?q=${query}`)
-    //     // if(data){
-    //     //     navigate(`/course/${course?._id}`)
-    //     // }
-    // } catch (error) {
-    //     console.log(error?.response?.data)
-    // }
   };
-  console.log("🤬🤬🤬", suggestedResults);
 
   return (
     <div className="search-container">
@@ -83,12 +68,6 @@ const NavbarSearch = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </form>
-      {/* {query && (
-          <IoMdClose
-            className="search_form--close-icon"
-            onClick={() => setQuery("")}
-          />
-        )} */}
 
       <>
         {suggestedResults?.length > 0 && (

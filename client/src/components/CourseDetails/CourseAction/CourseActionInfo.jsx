@@ -14,6 +14,7 @@ import {
 } from "../../../features/wishlist/wishlistSlice";
 import { AiFillInfoCircle } from "react-icons/ai";
 import useCheckEnrolled from "../../../hooks/useCheckEnrolled";
+
 Modal.setAppElement("#root");
 
 const CourseActionInfo = ({ course }) => {
@@ -27,7 +28,7 @@ const CourseActionInfo = ({ course }) => {
 
   const { isEnrolled, enrolledDate } = useCheckEnrolled(course._id);
 
-  //* fetching cart and wishlist courses while loading the page
+  // fetching cart and wishlist courses while loading the page
   useEffect(() => {
     dispatch(getWishlistCourses());
     dispatch(fetchCartCourses());
@@ -35,10 +36,6 @@ const CourseActionInfo = ({ course }) => {
 
   //check whether the course is in cart or in wishlist
   useEffect(() => {
-    // if(cartCourses?.some(cartCourse => cartCourse._id === course._id)){
-    //   console.log("👳‍♀️", addedToCart)
-    //   setAddedToCart(prev => !prev) //will be true
-    // }
     setIsWishlisted(false);
     if (
       wishlistCourses?.some(
@@ -48,12 +45,6 @@ const CourseActionInfo = ({ course }) => {
       setIsWishlisted(true); //will be true
     }
   }, [course?._id, wishlistCourses]);
-
-  // console.log("👵", course);
-  // console.log("👼", wishlistCourses);
-  // console.log("🎅", isWishlisted);
-  // console.log("👩‍🍳", cartCourses);
-  // console.log("👮‍♀️", addedToCart);
 
   //add course to wishlist
   const addToWishList = async (courseId) => {
@@ -95,14 +86,10 @@ const CourseActionInfo = ({ course }) => {
       setIsWishlisted(false);
       dispatch(getWishlistCourses());
     }
-    // if(wishlistCourses?.courseId?.includes(courseId)){
-    //   await axiosPublic.delete(`/wishlist/${courseId}`);
-    // }
   };
 
   // check if the course is already in the cart
   // useEffect(() => {
-  //   console.log("👺👺")
   //   if (courses?.filter((item) => item?._id === course?._id)?.length > 0) {
   //     setAddedToCart(true);
   //   } else {
@@ -112,7 +99,6 @@ const CourseActionInfo = ({ course }) => {
 
   // check if the course is already in the wishlist
   // useEffect(() => {
-  //   console.log("😎😎")
   //   if (wishlistCourses?.filter((item) => item?._id === course?._id)?.length > 0) {
   //     setIsWishlisted(true);
   //   } else {

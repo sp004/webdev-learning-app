@@ -8,7 +8,7 @@ Modal.setAppElement("#root");
 
 const CourseThumbnail = ({ course }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isEnrolled, enrolledDate } = useCheckEnrolled(course._id);
+  const { isEnrolled } = useCheckEnrolled(course._id);
 
   return (
     <>

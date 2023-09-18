@@ -11,7 +11,6 @@ export const addToWishlist = asyncHandler(async(req, res, next) => {
     if(course) return next(ErrorHandler(209, 'Course already added to wishlist'))
 
     await Wishlist.create({ courseId, userId: req.user.id })
-
     res.status(201).json({message: 'Course added in the wishlist', status: 'Success'})
 })
 
@@ -33,25 +32,18 @@ export const getWishlistCourses = asyncHandler(async(req, res, next) => {
     let wishlistCourses = wishlistCoursesWithRating.map(c => {
         return {
             ...c._doc,
-            avgRating: c.avgRating,
-            reviewCount: c.reviewCount
+            avgRating: c?.avgRating,
+            reviewCount: c?.reviewCount
         }
     })
-    // console.log("🎲🕹", wishlistCoursesWithRating)
-    // if(!courses?.length){
-    //     return res.status(204).json({message: "No courses found in wishlist"})
-    // }
-
     res.status(200).json({data: wishlistCourses})
 })
 
 //remove course wishlist
 export const removeFromWishlist = asyncHandler(async(req, res, next) => {
-    // const course = await Wishlist.find().exec()
     const course = await Wishlist.findOne({courseId: req.params.courseId, userId: req.user.id}).exec()
     if(!course) return next(ErrorHandler(404, 'Course not found in wishlist'))
 
     await course.delete()
-    
     res.status(200).json({message: 'Course is removed from wishlist', status: 'Success'})
 })

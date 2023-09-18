@@ -13,9 +13,6 @@ const ReviewForm = ({ courseId, toggleModal, rating, review, reviewId, i }) => {
   const [error, setError] = useState("");
   const [ratingPlaceholder, setRatingPlaceholder] = useState("");
 
-  // console.log(courseId, review, rating)
-  // console.log(myRating)
-
   const queryClient = useQueryClient();
 
   //submit review and rating
@@ -31,7 +28,6 @@ const ReviewForm = ({ courseId, toggleModal, rating, review, reviewId, i }) => {
       queryClient.invalidateQueries({ queryKey: ['myCourses'] })
     },
     onError: (error) => {
-      console.log(error.response);
       if(error.response.status !== 500){
         toast.error(error?.response.data.message);
         return
@@ -43,39 +39,8 @@ const ReviewForm = ({ courseId, toggleModal, rating, review, reviewId, i }) => {
   const reviewSubmitHandler = (e) => {
     e.preventDefault();
     createReviewMutation.mutate()
-    // try {
-    //   const { data } = await axiosPublic.post(`/review/post/${courseId}`, {
-    //     rating: myRating,
-    //     review: myReview,
-    //   });
-    //   console.log("🐶🐵", data);
-    //   data.status === "Success" && toggleModal(i);
-    //   data.status === "error" && toast.error(data.message);
-    // } 
-    // catch (error) {
-    //   console.log(error?.response);
-    //   if(error.response.status !== 500){
-    //     toast.error(error?.response.data.message);
-    //     return
-    //   }
-      // toast.error("Something went wrong, please try again later");
-    // }
   };
 
-  // const editReviewHandler = async () => {
-  //   console.log(reviewId)
-  //   try {
-  //     const { data } = await axiosPublic.put(`/review/edit/${reviewId}`, {
-  //       rating: myRating,
-  //       review: myReview,
-  //     });
-  //     console.log(data?.data)
-  //     data.status === "Success" && toggleModal(i);
-  //   } catch (error) {
-  //     toast.error("Something went wrong");
-  //     console.log(error)
-  //   }
-  // }
   const editReviewMutation = useMutation({
     mutationFn: async () => {
       return await axiosPublic.put(`/review/edit/${reviewId}`, {
@@ -84,22 +49,11 @@ const ReviewForm = ({ courseId, toggleModal, rating, review, reviewId, i }) => {
       })
     },
     onSuccess: ({data}) => {
-      console.log(data)
       toggleModal(i)
       queryClient.invalidateQueries({ queryKey: ['myCourses'] })
     },
   })
 
-  // const deleteReviewHandler = async () => {
-  //   try {
-  //     const { data } = await axiosPublic.delete(`/review/delete/${reviewId}`);
-  //     console.log(data?.data)
-  //     data.status === "Success" && toggleModal(i);
-  //   } catch (error) {
-  //     toast.error("Something went wrong");
-  //     console.log(error)
-  //   }
-  // }
   const deleteReviewMutation = useMutation({
     mutationFn: async () => {
       return await axiosPublic.delete(`/review/delete/${reviewId}`)
@@ -167,9 +121,9 @@ const ReviewForm = ({ courseId, toggleModal, rating, review, reviewId, i }) => {
           : <button className="review-save--button">Save & Continue</button>
           }
         </div>
-        {error && (
+        {/* {error && (
           <h5 style={{ color: "red", textAlign: "center" }}>{error}</h5>
-        )}
+        )} */}
       </form>
     </div>
   );

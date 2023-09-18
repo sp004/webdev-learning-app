@@ -17,9 +17,6 @@ const PendingApproval = ({ courseItem }) => {
             {courseItem?.courseContent?.length > 1 ? "Lectures" : "Lecture"} •{" "}
             {hour ? `${hour}hr` : ""} {`${minutes}min`} • {courseItem?.level === 'all' ? 'All Levels': courseItem?.level}
           </span>
-          {/* <div className={`approval-status ${courseItem?.approved === 'no' ? 'pending' : "rejected"}`}>
-                <p>{courseItem?.approved === 'no' ? 'Pending' : "Rejected"}</p>
-              </div> */}
         </div>
       </div>
     </div>

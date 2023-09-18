@@ -7,8 +7,6 @@ courseRouter.get('/courses', getCoursesForSuggestions)
 courseRouter.get('/recentUploads/:userId', recentUploads)
 courseRouter.get('/bestSellingCourses/:userId', bestSellingCourses)
 courseRouter.get('/search', getSearchedCourses)
-// courseRouter.get('/filter', getCoursesByFilter)
-// courseRouter.get('/enrolledCourses', verifyJWT, enrolledCourses)
 
 courseRouter.get('/:courseId', getCourse)
 

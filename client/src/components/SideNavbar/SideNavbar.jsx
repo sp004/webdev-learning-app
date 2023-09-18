@@ -10,7 +10,6 @@ import { authLogout } from "../../features/auth/authSlice";
 import "./SideNavbar.scss";
 
 const SideNavbar = ({openMobileSideNav, setOpenMobileSideNav}) => {
-    console.log(openMobileSideNav)
   const { currentUser, isLoggedin, isSuccess } = useSelector(
     (state) => state.auth
   );

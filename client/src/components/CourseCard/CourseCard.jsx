@@ -41,7 +41,7 @@ const CourseCard = ({courseItem}) => {
         setIsWishlisted(prev => !prev)
         await dispatch(getWishlistCourses())
     };
-    console.log(courseItem)
+
   return (
     <div className='course-card'>
         <div onClick={() => navigate(`/course/${courseItem?._id}`)}>

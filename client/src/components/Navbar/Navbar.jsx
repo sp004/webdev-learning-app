@@ -1,24 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import './Navbar.scss'
-import {CgMenuRight} from 'react-icons/cg'
-import {AiOutlineClose} from 'react-icons/ai'
-import {MdOutlineShoppingCart, MdOutlineAddShoppingCart} from 'react-icons/md'
+import {MdOutlineShoppingCart} from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { userProfile } from '../../features/auth/authSlice'
 import MenuBox from './MenuBox/MenuBox'
-import { axiosPublic } from '../../api/apiMethod'
 import NavbarSearch from './NavbarSearch/NavbarSearch'
 import { fetchCartCourses } from '../../features/cart/cartSlice'
 import {RxHamburgerMenu} from 'react-icons/rx'
-import {GrFormClose} from 'react-icons/gr'
 import SideNavbar from '../SideNavbar/SideNavbar'
 
 const Navbar = () => {
     const {currentUser, isLoggedin} = useSelector(state => state.auth)
     const {courses, totalPrice} = useSelector(state => state.cart)
-    const {course} = useSelector(state => state.course)
 
     const [toggleMenu, setToggleMenu] = useState(false)
     const [openMobileSideNav, setOpenMobileSideNav] = useState(false)
@@ -29,17 +24,9 @@ const Navbar = () => {
     const location = useLocation()
 
     useEffect(() => {
-        console.log("😷😷")
         dispatch(userProfile())
         dispatch(fetchCartCourses())
     }, [dispatch])
-    // console.log(currentUser)
-   console.log(courses, totalPrice)
-
-   const openMobileSideNavHandler = () => {
-    console.log("koo")
-    setOpenMobileSideNav(prev => !prev)
-   }
    
   return (
     <nav className='space-bw'>
@@ -90,13 +77,7 @@ const Navbar = () => {
                     <SideNavbar openMobileSideNav={openMobileSideNav} setOpenMobileSideNav={setOpenMobileSideNav} />
                 </div>
             </ul>
-
         </div>
-        
-        {/* {isLoggedin && <div className='hamburger' onClick={() => setToggleMenu(prev => !prev)} >
-            {!toggleMenu && <CgMenuRight />}
-            {toggleMenu && <AiOutlineClose />}
-        </div>} */}
     </nav>
   )
 }

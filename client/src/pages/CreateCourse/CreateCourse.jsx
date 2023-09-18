@@ -12,7 +12,6 @@ import { axiosPublic } from '../../api/apiMethod';
 import { instructorSubNavLinks } from '../../utils';
 import { toast } from 'react-hot-toast';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
-// import UploadContent from '../../components/UploadContent/UploadContent';
 
 const CreateCourse = () => {
   useDocumentTitle(`Create course - Webdev Skool`)
@@ -35,12 +34,6 @@ const CreateCourse = () => {
 
   const imgRef = useRef()
   const vidRef = useRef()
-
-  const [stepError, setStepError] = useState({
-    step1: false,
-    step2: false,
-    step3: false
-  })
 
   const validationSchema = yup.object().shape({
     title: yup.string().required("Title is required"),
@@ -70,7 +63,7 @@ const CreateCourse = () => {
     mode: "onTouched"
   });
   const { fields, append, remove } = useFieldArray({ name: 'courseContent', control });
-console.log("field ", fields)
+
   const nextHandler = () => {
     setStep((prev) => prev + 1)
   }
@@ -91,21 +84,19 @@ console.log("field ", fields)
   useEffect(() => {
     const newVal = parseInt(numberOfLectures || 0);
     const oldVal = fields.length;
-    console.log("hello", newVal, oldVal)
+
     if (newVal > oldVal) {
       for (let i = oldVal; i < newVal; i++) {
         append({ lecture: '', duration: '' });
       }
     } else {
       for (let i = oldVal; i > newVal; i--) {
-        console.log("👩‍🚀👩‍🚀", i)
         remove(i - 1);
       }
     }
   }, [numberOfLectures, append, remove, fields.length]);
 
   const removeHandler = (index) => {  
-    console.log("👩 remove index " + index)
     remove(index);
   }
 
@@ -136,10 +127,10 @@ console.log("field ", fields)
 
     //check if the file already exists
     const store = getStorage()
+
     // Create a reference to the file to delete
     const uploadedImgRef = ref(store, `thumbnails/${prevThumb?.name + currentUser?._id}`);
-    // console.log(uploadedImgRef)
-    // console.log(prevThumb?.name)
+
     (prevThumb?.name && uploadedImgRef?._location?.path_) && await deleteObject(uploadedImgRef)
 
     //upload to firebase storage
@@ -147,9 +138,9 @@ console.log("field ", fields)
       const thumbnailRef = ref(storage, `thumbnails/${thumbnail?.name + currentUser?._id}`)
       const snapshot = await uploadBytes(thumbnailRef, thumbnail)
       setThumbnailLink(await getDownloadURL(snapshot.ref))
-      console.log(thumbnailLink)
     } catch (error) {
-      console.error(error)
+      toast.error('Something went wrong')
+      // console.error(error)
     }
   }
 
@@ -159,8 +150,10 @@ console.log("field ", fields)
 
     //check if the file already exists
     const store = getStorage()
+
     // Create a reference to the file to delete
     const uploadedVidRef = ref(store, `videos/${prevVideo?.name + currentUser?._id}`);
+
     prevVideo?.name && await deleteObject(uploadedVidRef)
 
     if(video?.size > 5242880){
@@ -172,25 +165,24 @@ console.log("field ", fields)
       const snapshot = await uploadBytes(videoRef, video)
       setVideoLink(await getDownloadURL(snapshot.ref))
     } catch (error) {
-      console.error(error)
+      toast.error('Something went wrong')
+      // console.error(error)
     }
   }
 
   const formSubmitHandler = async (data) => {
-    console.log({...data, thumbnail: thumbnailLink, video: videoLink})
-
     try {
       const res = await axiosPublic.post('/course/create', {...data, thumbnail: thumbnailLink, video: videoLink}, {withCredentials: true})
-      console.log(res)
 
       if(res?.status === 201){
         setConfirmMsg("Your course has been submitted successfully. After admin verification, it will be published.")
         setTimeout(() => {
           navigate('/instructor/dashboard/', {replace: true})
-        }, 6000)
+        }, 5000)
       }
     } catch (error) {
-      console.log(error)
+      toast.error('Something went wrong')
+      // console.log(error)
       if(error?.response?.status === 401){
         toast.error(error?.response?.data?.message)
         return

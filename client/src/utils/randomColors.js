@@ -7,7 +7,6 @@ export const getRandomColor = () => {
     return color;
 }
 
-
 export const getInitials = (name) => {
     let initials;
     const nameSplit = name.split(" ");
@@ -22,7 +21,6 @@ export const getInitials = (name) => {
 
     return initials.toUpperCase();
 };
-
 
 export const createImageFromInitials = (size, name, color) => {
     if (name == null) return;

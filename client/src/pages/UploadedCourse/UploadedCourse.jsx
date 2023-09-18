@@ -5,6 +5,7 @@ import { instructorSubNavLinks } from '../../utils'
 import './UploadedCourse.scss'
 import { axiosPublic } from '../../api/apiMethod'
 import useDocumentTitle from '../../hooks/useDocumentTitle'
+import toast from 'react-hot-toast'
 
 const UploadedCourse = () => {
   useDocumentTitle(`Published courses - Webdev Skool`)
@@ -15,10 +16,9 @@ const UploadedCourse = () => {
     const fetchPublishedCourses = async () => {
       try {
         const {data} = await axiosPublic.get(`/course/publishedCoursesByInstructor/${currentUser?._id}`, {withCredentials: true})
-        console.log(data?.courses)
         setPublishedCourse(data?.courses)
       } catch (error) {
-        console.log(error?.message)
+        toast.error('Something went wrong')
       }
     }
     fetchPublishedCourses()

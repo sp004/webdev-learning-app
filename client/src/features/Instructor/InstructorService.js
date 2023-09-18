@@ -8,6 +8,6 @@ export const fetchInstructor = async (id) => {
 
 export const updateInstructor = async () => {
     const response = await axiosPublic.patch(`/instructor/edit`, {withCredentials: true})
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
 }

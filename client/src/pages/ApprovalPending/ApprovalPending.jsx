@@ -5,6 +5,7 @@ import { instructorSubNavLinks } from '../../utils'
 import { useSelector } from 'react-redux'
 import { axiosPublic } from '../../api/apiMethod'
 import useDocumentTitle from '../../hooks/useDocumentTitle'
+import toast from 'react-hot-toast'
 
 const ApprovalPending = () => {
   useDocumentTitle(`Pending for Approval - Webdev Skool`)
@@ -14,11 +15,11 @@ const ApprovalPending = () => {
     useEffect(() => {
         const fetchPendingCourses = async () => {
           try {
-            const {data} = await axiosPublic.get(`/course/pendingCoursesByInstructor/${currentUser?._id}`, {withCredentials: true})
-            console.log(data?.courses)
+            const {data} = await axiosPublic.get(`/course/pendingCoursesByInstructor/${currentUser?._id}`)
             setPendingCourses(data?.courses)
           } catch (error) {
-            console.error(error?.message)
+            toast.error('Something went wrong')
+            // console.error(error?.message)
           }
         }
         fetchPendingCourses()

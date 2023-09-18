@@ -15,14 +15,6 @@ export const getUserOrder = asyncHandler(async(req, res, next) => {
     // const allOrders = await Order.aggregate(pipeline)
     const orders = await Order.find({userId: req.user.id}).populate('courseId', 'title price _id')
 
-    console.log("⚓🛩", orders)
     if(!orders) return next(ErrorHandler(204, 'No order found for this user'))
-
     res.status(200).json({orders})
 })
-
-// export const courseOrderStat = asyncHandler(async(req, res, next) => {
-//     const {id} = req.user
-//     const allPublishedCourses = await Course.find({createdBy: id})
-//     const courseOrderData = await Order.find({})
-// })

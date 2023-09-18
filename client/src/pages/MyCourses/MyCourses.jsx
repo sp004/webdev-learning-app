@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SubNavbar, ReviewForm } from "../../components";
+import { SubNavbar, ReviewForm, Loading } from "../../components";
 import { myCourseSubNavLinks } from "../../utils";
 import { axiosPublic } from "../../api/apiMethod";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,6 @@ import Rating from "react-rating";
 import { BsStar, BsStarFill } from "react-icons/bs";
 import { customStyles } from "../../components/CourseDetails/CourseAction/CourseAction";
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "react-hot-toast";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 Modal.setAppElement("#root");
 
@@ -25,7 +24,6 @@ const MyCourses = () => {
   const toggleModal = (index, e) => {
     e?.stopPropagation();
     setModalOpenStatus((prev) => {
-      console.log(prev);
       const updatedStatus = [...prev];
       updatedStatus[index] = !updatedStatus[index];
       return updatedStatus;
@@ -54,36 +52,7 @@ const MyCourses = () => {
     queryKey: ["myCourses", currentPage],
     queryFn: () => getEnrolledCourses(currentPage)
   });
-  console.log("***-*-*-*-*-", currentPage);
-  //fetch review of a particular course
-  // useEffect(() => {
-  //   const fetchReview = async () => {
-  //     const {data} = await axiosPublic.get(`/review/${courseId}`)
-  //     console.log("😿🐱‍👤", data.data)
 
-  //   }
-  //   fetchReview()
-  // }, [courseId])
-
-  // const endOffset = itemOffset + itemsPerPage;
-  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  // const currentItems = items.slice(itemOffset, endOffset);
-  // const pageCount = Math.ceil(items.length / itemsPerPage);
-
-  // Invoke when user click to request another page.
-  // const handlePageClick = (event) => {
-  //   console.log(event.selected);
-  //   event.selected && navigate(`/my-courses/learning?page=${event.selected + 1}`);
-  //   setCurrentPage(event.selected);
-  // };
-  console.log(
-    "⛎💥",
-    error,
-    isPreviousData,
-    isFetching,
-    isLoading,
-    enrolledCourses
-  );
   return (
     <>
       <SubNavbar title="My Learning" links={myCourseSubNavLinks} />
@@ -91,7 +60,7 @@ const MyCourses = () => {
       <div className="wrapper">
         <section>
           {isLoading ? (
-            <div className="empty-content">Loading...</div>
+            <Loading loading={isLoading} />
           ) : (
             <>
               {(enrolledCourses?.length > 0 || error?.response?.status !== 404) ? (
@@ -228,41 +197,6 @@ const MyCourses = () => {
             </>
           )}
         </section>
-
-        {/* <div className='pagination'> 
-          <button
-            className={`page-link ${currentPage === 1 ? 'disabled' : ''}`}
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 0))}
-            disabled={currentPage === 1}
-          >
-            &lt;
-          </button>
-
-          <div className="course-pagenumber">
-            {Array(Math.ceil(totalCourses / perPage))?.fill()?.map((_, i) => (
-              <button key={i} className={`page-link ${currentPage === i + 1 ? 'active' : ''}`} onClick={() => setCurrentPage(i + 1)} disabled={isPreviousData}>{i + 1}</button>
-            ))}
-          </div>
-
-          <button
-            className={`page-link ${(isPreviousData || (currentPage * perPage) >= totalCourses) ? 'disabled' : ''}`}
-            onClick={() => {
-              if (!isPreviousData && (currentPage * perPage) < totalCourses) {
-                setCurrentPage(prev => prev + 1)
-              }
-            }}
-            disabled={isPreviousData || (currentPage * perPage) >= totalCourses}
-          >
-            &gt;
-          </button>
-        </div>
-        <p className='per_page-count'>{(currentPage - 1) * perPage + 1} - 
-        {currentPage * perPage < totalCourses 
-        ? currentPage * perPage 
-        : totalCourses}{" "}
-          of {totalCourses} Courses
-        </p>
-        {isFetching ? <span className='empty-content'>bc Loading...</span> : null}{' '} */}
       </div>
     </>
   );

@@ -6,7 +6,6 @@ import Layout from './layout/Layout'
 import { authLogout, reset, userProfile } from './features/auth/authSlice'
 import { Cart, Checkout, CourseDetails, Home, InstructorOnboard, InstructorProfile, Login, MyCourses, PaymentSuccessful, Profile, PurchaseHistory, Signup, UploadedCourse, Wishlist, SearchedCourse, ApprovalPending, BadRequest } from './pages'
 import CreateCourse from './pages/CreateCourse/CreateCourse'
-// import EditProfile from './pages/EditProfile/EditProfile'
 import LoginOTP from './pages/LoginWithOtp/LoginOTP'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Reset } from './features/Instructor/InstructorSlice'
@@ -28,7 +27,6 @@ const App = () => {
   // fetching loggedin user information
   useEffect(() => {
     if(!currentUser?.isInstructor){
-      console.log("👶")
       dispatch(userProfile())
     } 
   }, [dispatch, currentUser?.isInstructor])
@@ -56,7 +54,6 @@ const App = () => {
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />} />
             <Route path='course/:courseId' element={<CourseDetails />} />
-            {/* <Route path='instructor/:id' element={<InstructorProfile />} />   */}
             <Route path='course/search' element={<SearchedCourse />} />
 
             <Route path='login' element={!currentUser ? <Login /> : <Navigate to={`/`} />} />
@@ -66,7 +63,6 @@ const App = () => {
             <Route element={<RequireAuth />}>
               <Route path='account'>
                 <Route index element={<Profile />}/>
-                {/* <Route path='profile/edit' element={<EditProfile />}/> */}
                 <Route path='instructor' element={<InstructorProfile />} />
                 <Route path='purchase-history' element={<PurchaseHistory />} />
               </Route>
@@ -86,7 +82,6 @@ const App = () => {
                 <Route path='paymentsuccess' element={<PaymentSuccessful />} />
               </Route>
             </Route>
-            
           </Route>
           
           <Route element={<InstructorLayout />}>

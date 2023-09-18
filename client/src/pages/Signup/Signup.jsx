@@ -31,31 +31,17 @@ const Signup = () => {
   const dispatch = useDispatch()
   const {isSuccess, message, isLoading} = useSelector(state => state.auth)
   const [error, setError] = useState('')
-  console.log("👰", message)
-  //registration logic
+
   const signupHandler = async (data) => {
     await dispatch(authregister(data))
-    console.log("😍", message)
     !isSuccess && setError(message)
     setTimeout(() => {
       setError('')
     }, 2000);
-    // toast.error(message)
   };
-
-  // useEffect(() => {
-  //   console.log("😍", message)
-  //   !isSuccess && setError(message)
-  //   setTimeout(() => {
-  //     setError('')
-  //   }, 2000);
-  // }, [isSuccess, message]);
   
-
   useEffect(() => {
-    console.log("lio")
     if(message === "Successfully registered"){
-      console.log("jio")
       navigate('/login')
     }
   }, [navigate, message])

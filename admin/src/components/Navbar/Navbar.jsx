@@ -7,7 +7,6 @@ import { BiLogOut } from "react-icons/bi";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  // console.log("😎", session, status)
 
   return (
     <nav>

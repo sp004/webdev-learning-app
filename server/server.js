@@ -4,13 +4,10 @@ import dotenv from 'dotenv'
 import connectDB from './config/connectDB.js'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
-import './config/passport.js'
-import passport from 'passport'
 import authRouter from './routes/authRoute.js'
 import userRouter from './routes/userRoute.js'
 import InstructorRouter from './routes/InstructorRoute.js'
 import courseRouter from './routes/courseRoute.js'
-// import cartRouter from './routes/cartRoute.js'
 import enrolledCourseRouter from './routes/enrolledCourseRoute.js'
 import Razorpay from "razorpay";
 import checkoutRouter from './routes/checkoutRoute.js'
@@ -26,7 +23,7 @@ const app = express()
 dotenv.config()
 
 app.use(cors({
-  origin: [process.env.BACKEND_URL, process.env.FRONTEND_URL, process.env.ADMIN_URL],
+  origin: [process.env.FRONTEND_URL, process.env.ADMIN_URL],
   credentials: true,
 }))
 
@@ -48,10 +45,6 @@ app.use(
 //     httpOnly: true
 //   }
 // }))
-
-app.use(passport.initialize())
-app.use(passport.session())
-
 
 const port = process.env.PORT || 5500
 
@@ -81,7 +74,7 @@ app.use('/api/payment', checkoutRouter)
 app.get('*', (req, res) => res.send('Page not found'))
 
 app.use((err, req, res, next) => {
-    console.log("error =>", err)
+    console.log("error: ", err)
     const errStatus = err.status ? err.status : 500
     const errMsg = err?.message ? err?.message : 'Something went wrong'
     const stack = process.env.NODE_ENV !== 'production' ? err.stack : null

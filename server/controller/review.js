@@ -21,21 +21,20 @@ export const postReview = asyncHandler(async(req, res, next) => {
         reviewDate: Date.now()
     })
     if(!newReview) return(next(ErrorHandler(404, 'Please enter a valid review')))
-    // newReview.courseId = courseId
-    // newReview.userId = id
-    // newReview.reviewDate = new Date(Date.now())
-    // await newReview.save()
 
     res.status(201).json({data: newReview, message: 'Review created successfully', status: 'Success'})
 })
 
 // get all reviews
 export const getCourseReviews = asyncHandler(async(req, res, next) => {
-    // console.log("sd45s4", req.params.courseId)
     const reviews = await Review.find({courseId: req.params?.courseId}).populate('userId', 'fullName avatar')
     if(!reviews) return next(ErrorHandler(404, "No reviews yet..."))
-    const reviewWithParsedRating = reviews?.map(r => {return {...r._doc, rating: parseFloat(r.rating.toString())}})
-    // console.log(reviewWithParsedRating)
+    const reviewWithParsedRating = reviews?.map(r => {
+        return {
+            ...r._doc, 
+            rating: parseFloat(r.rating.toString())
+        }
+    })
     res.status(200).json({data: reviewWithParsedRating})
 })
 
@@ -44,7 +43,6 @@ export const getReview = asyncHandler(async(req, res, next) => {
     const {id} = req.user
     const userReview = await Review.findOne({userId: id, courseId: req.params.courseId}).exec()
     if(!userReview) return next(ErrorHandler(404, "No review found"))
-
     res.status(200).json({status: 'Success', data: userReview})
 })
 
@@ -54,18 +52,13 @@ export const editReview = asyncHandler(async(req, res, next) => {
         {$set: req.body}, 
         {new: true}
     )
-    console.log("🤬😇", updatedReview)
     if(!updatedReview) return next(ErrorHandler(404, "No updated review found"))
-
     res.status(200).json({status: 'Success', data: updatedReview})
 })
 
 // delete review
 export const deleteReview = asyncHandler(async(req, res, next) => {
-    console.log("----", req.params?.reviewId)
     const deletedReview = await Review.findByIdAndDelete(req.params?.reviewId)
-    console.log("🍜🍖", deletedReview)
     if(!deletedReview) return next(ErrorHandler(404, "Review not found"))
-
     res.status(200).json({status: 'Success', message: 'Review deleted successfully'})
 })

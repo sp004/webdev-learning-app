@@ -6,7 +6,7 @@ import moment from "moment";
 import deleted_user from '../../../assets/deleted_user.png'
 
 const Reviews = ({ courseId, reviews, avgRating, noOfRatings }) => {
-  console.log(reviews);
+
   return (
     <div className="course-review">
       <h2>Reviews</h2>

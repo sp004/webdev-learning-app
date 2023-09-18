@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './CourseContent.scss'
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion';
 import "react-accessible-accordion/dist/fancy-example.css";
 import { courseDurationFormatter } from '../../../utils/courseDurationFormatter';
 
 const CourseContent = ({course}) => {
-    const [isExpanded, setIsExpanded] = useState(false);
     const {hour: h, minute: m} = courseDurationFormatter(course?.courseContent)
   return (
     <div className="course-content">
@@ -24,7 +23,6 @@ const CourseContent = ({course}) => {
             preExpanded={[0]}
         >
             {course?.courseContent?.map((item, i) => {
-            let ex = isExpanded ? i < course?.courseContent?.length : 0;
             return (
                 <AccordionItem key={i} uuid={i}>
                     <AccordionItemHeading>

@@ -1,51 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { axiosPublic } from '../../api/apiMethod'
-import { Navbar } from '../../components'
 import { fetchCartCourses, removeFromCart } from '../../features/cart/cartSlice'
-import { getInstructor } from '../../features/Instructor/InstructorSlice'
 import './Cart.scss'
 import { addToWishlist } from '../../features/wishlist/wishlistSlice'
 import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 const Cart = () => {
     useDocumentTitle(`Cart - Webdev Skool`)
-    // const {courses} = useSelector(state => state.cart)
-    // const [courses, setCourses] = useState([])
-    // const [totalPrice, setTotalPrice] = useState()
 
     const {courses, totalPrice} = useSelector(state => state.cart)
-    const {currentUser} = useSelector((state) => state.auth);
+    // const {currentUser} = useSelector((state) => state.auth);
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    console.log(courses, totalPrice)
-    // console.log(cart)
-    console.log(currentUser)
-
-    //get instructor details of the course
-    // useEffect(() => {
-    //     courses.forEach(item => {
-    //       dispatch(getInstructor(item.createdBy));
-    //     });
-    // }, [courses, dispatch]);
-
-    // useEffect(() => {
-    //   dispatch(fetchCartCourses())
-    // }, [])
-    
-
-    // useEffect(() => {
-    //   const fetchCartCourses = async () => {
-    //     const {data} = await axiosPublic.get(`/cart/getCart`)
-    //     console.log("cart courses ===>", data)
-    //     setCourses(data?.data)
-    //     setTotalPrice(data?.totalPrice)
-    //   }
-    //   fetchCartCourses()
-    // }, [])
-    
 
     const removeCartHandler = async (courseId) => {
         await dispatch(removeFromCart(courseId))

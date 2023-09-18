@@ -2,7 +2,6 @@ import asyncHandler from "express-async-handler";
 import { ErrorHandler } from "../middlewares/ErrorHandler.js";
 import Course from "../model/Course.js";
 import Instructor from "../model/Instructor.js";
-import User from "../model/User.js";
 import { checkEnrolled } from "../helpers/checkEnrolled.js";
 import { getCoursesAvgRating } from "../helpers/getCourseRating.js";
 import Order from "../model/Order.js";
@@ -10,40 +9,24 @@ import { calculateEnrollmentStat } from "../utils/calculateEnrollmentStat.js";
 
 //create new Course
 export const createCourse = asyncHandler(async(req, res, next) => {
-    console.log("create -->", req.user, req.body);
     const newCourse = await Course.create(req.body)
     const instructor = await Instructor.findOne({userId: req.user.id})
     newCourse.createdBy = instructor.userId
-    // instructor.publishedCourses.push(newCourse._id)
     await newCourse.save(newCourse)
 
     res.status(201).json({message: 'Course has been created', newCourse})
 })
 
-
 //get a particular Course
 export const getCourse = asyncHandler(async(req, res, next) => {
     const {courseId} = req.params
-    // console.log("👩‍🔬🤡", req?.body)
-    // path: `${createdBy.toString()}`,
-        // select: "fullName avatar",
-        // populate: {
-        //     path: "userId",
-        //     model: Instructor,
-        //     select: "designation bio",
-        // },
+
     const course = await Course.findById(courseId).populate('createdBy', 'fullName avatar email')
     if(!course) return next(ErrorHandler(404, 'No course found!!!'))
 
-    // Get the user ID of the course creator (instructor)
-    // const instructorUserId = course.createdBy;
-    // console.log("🥶😎", course?.createdBy, course?.createdBy?._id?.toString())
     // Fetch the instructor information using the user ID
     const instructor = await Instructor.findOne({ userId: course?.createdBy?._id?.toString() }).select("designation bio").exec();
-    // console.log("🤯😥", instructor)
 
-    // const {fullName} = await User.findById(course?.createdBy)
-    // console.log("💀🎅", {...course._doc, instructor})
 
     // if(req?.user?.id){
         res.status(200).json({course: {
@@ -58,14 +41,12 @@ export const getCourse = asyncHandler(async(req, res, next) => {
     // }
     // else{
     //     const coursesInCart = await Cart.find({courseId: course.id, userId: req?.user?.id})
-    //     console.log("🐎", coursesInCart)
     // }
 })
 
 //get courses based on search
 export const getSearchedCourses = asyncHandler(async(req, res, next) => {
     const {query, rating, level, category} = req.query
-    console.log("💟💮", req.query)
 
     if(query && query?.trim() === ''){
         return next(ErrorHandler(400, 'Invalid query'))
@@ -110,7 +91,6 @@ export const getSearchedCourses = asyncHandler(async(req, res, next) => {
             req.query?.category ? { category } : {}
         ]
     }).where({approved: 'yes'}).populate('createdBy', 'fullName')
-    console.log("ioioioioio", searchedCourses?.length)
     
     if(!searchedCourses) return next(ErrorHandler(404, 'No course found!!!'))
     
@@ -121,12 +101,10 @@ export const getSearchedCourses = asyncHandler(async(req, res, next) => {
             avgRating: c?.avgRating
         }
     })
-    console.log("👟🥾", coursesWithRating?.length)
+
     if(req.query?.rating){
         coursesWithRating = coursesWithRating?.filter(item => item?.avgRating >= parseInt(rating))
     }
-    // console.log("🎇🎨", coursesWithRating)
-    console.log("8*8*8*8*8*", req.query?.rating, coursesWithRating?.length)
     
     res.status(200).json({course: coursesWithRating, success: true})
 })
@@ -134,7 +112,6 @@ export const getSearchedCourses = asyncHandler(async(req, res, next) => {
 //get courses based on filter
 export const getCoursesByFilter = asyncHandler(async(req, res, next) => {
     const {query, rating, level, category} = req.query
-    console.log("💟💮", req.query)
 
     if(!query || query?.trim() === ''){
         return next(ErrorHandler(400, 'Invalid query'))
@@ -156,11 +133,9 @@ export const getCoursesByFilter = asyncHandler(async(req, res, next) => {
             { category: req.query?.category }
         ]
     }).where({approved: 'yes'}).populate('createdBy', 'fullName')
-    console.log("8*8*8*8*8*", searchedCourses?.length)
 
     // const regexQuery = new RegExp(title, 'i');
     const filteredCourses = await Course.find({level: req.query?.level}).where({approved: 'yes'}).populate('createdBy', 'fullName')
-    console.log("8*8*8*8*8*", filteredCourses?.length)
 
     if(!filteredCourses) return next(ErrorHandler(404, 'No course found!!!'))
     
@@ -171,6 +146,7 @@ export const getCoursesByFilter = asyncHandler(async(req, res, next) => {
 export const getCoursesForSuggestions = asyncHandler(async(req, res, next) => {
     const {keyword} = req.query
     let query;
+
     if (keyword && keyword.trim() !== '') {
         query = {
             $or: [
@@ -180,7 +156,6 @@ export const getCoursesForSuggestions = asyncHandler(async(req, res, next) => {
         };
     }
     const suggestedCourses = await Course.find(query).where({approved: 'yes'}).populate("createdBy", "fullName").limit(4)
-    console.log(suggestedCourses)
 
     res.status(200).json({data: suggestedCourses})
 })
@@ -189,7 +164,6 @@ export const getCoursesForSuggestions = asyncHandler(async(req, res, next) => {
 //get all approved Courses by instructor
 export const publishedCoursesByInstructor = asyncHandler(async(req, res, next) => {
     const {instructorId} = req.params
-    // console.log("🤩🤩", instructorId)
     
     const courses = await Course.find({createdBy: instructorId}).where({approved: 'yes'}).populate({
         path: "_id"
@@ -199,21 +173,12 @@ export const publishedCoursesByInstructor = asyncHandler(async(req, res, next) =
         // }
     })
     if(!courses) return next(ErrorHandler(404, 'No Course found'))
-// console.log("****", courses?.map(c => {
-//     return{
-//         id: c?._id,
-//         t: c.title
-//     }
-// }))
     
     const orderData = await (await Promise.all(courses?.map(course => Order.find({courseId: course._id})))).flat(1)
     const enrollmentData = calculateEnrollmentStat(orderData)
 
-    console.log("🤍🔕", enrollmentData)
-    console.log("🤍8", courses)
     const coursesWithEnrollementData = courses?.map(course => {
         const filtered = enrollmentData.find((item) => item.courseId.equals(course._id))
-        console.log("202020002020", filtered)
         return {
             ...course._doc,
             totalEnrolled: filtered?.totalEnrolled,
@@ -221,7 +186,6 @@ export const publishedCoursesByInstructor = asyncHandler(async(req, res, next) =
         }
     })
 
-    console.log("💌🈸", coursesWithEnrollementData)
     const coursesWithRating = await getCoursesAvgRating(coursesWithEnrollementData)
     const updatedPublishedCourses = coursesWithRating?.map(course => {
         return {
@@ -231,22 +195,15 @@ export const publishedCoursesByInstructor = asyncHandler(async(req, res, next) =
         }
     })
 
-    // const users = await Promise.all(courses.map(course => User.findById(course?.createdBy)))
-    // const coursesWithInstructor = courses.map((course, i) => ({...course._doc, fullName: users[i].fullName}))
-// console.log("*-*--*-*-*-", updatedPublishedCourses)
     res.status(200).json({courses: updatedPublishedCourses})
 })
 
 //get all unapprovd/pending Courses by instructor
 export const pendingCoursesByInstructor = asyncHandler(async(req, res, next) => {
     const {instructorId} = req.params
-    // console.log("🤩", instructorId)
 
     const courses = await Course.find({createdBy: instructorId}).where({approved: 'no'})
     if(!courses) return next(ErrorHandler(404, 'No Course found'))
-
-    // const users = await Promise.all(courses.map(course => User.findById(course?.createdBy)))
-    // const coursesWithInstructor = courses.map((course, i) => ({...course._doc, fullName: users[i].fullName}))
 
     res.status(200).json({courses})
 })
@@ -260,14 +217,14 @@ export const bestSellingCourses = asyncHandler(async(req, res, next) => {
     if(userId !== 'undefined'){
         const enrolledtopRatedCourses = await checkEnrolled(allCourses, userId)
         const coursesWithRating = await getCoursesAvgRating(enrolledtopRatedCourses)
-        // console.log("💌🈸", coursesWithRating)
+
         const sortedBestSellingCourses = coursesWithRating?.filter((course) => course.avgRating > 4.5 && course.reviewCount > 1)
     
         if(!sortedBestSellingCourses?.length) return next(ErrorHandler(404, 'There are no best seller courses'))
         res.status(200).json({data: sortedBestSellingCourses})
     }else{
         const coursesWithRating = await getCoursesAvgRating(allCourses)
-        // console.log("💌🈸", coursesWithRating)
+
         const sortedBestSellingCourses = coursesWithRating?.map(item => {
             return {
                 avgRating: item.avgRating,
@@ -287,7 +244,6 @@ export const recentUploads = asyncHandler(async(req, res, next) => {
     const {userId} = req.params
     const recentCourses = await Course.find().sort({uploadedOn: -1}).populate('createdBy', 'fullName').where({approved: 'yes'}).limit(5)
     
-    // console.log("🕳💨", userId, typeof userId, recentCourses)
     if(req?.params?.userId !== "undefined"){
         const enrolledRecentUploads = await checkEnrolled(recentCourses, userId)
         const coursesWithRating = await getCoursesAvgRating(enrolledRecentUploads)
@@ -305,7 +261,6 @@ export const recentUploads = asyncHandler(async(req, res, next) => {
         })
         res.status(200).json({data: updatedRecentCourses})
     }
-
 })
 
 

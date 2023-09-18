@@ -8,6 +8,5 @@ export async function checkEnrolled(courses, userId){
             isEnrolled: !!isEnrolled //convert the isEnrolled object to a boolean
         }
     }))).flat(1)
-    // console.log("moew 🏍🌋", enrolledData)
     return enrolledData
 }

@@ -4,45 +4,25 @@ import './CourseDetailsHeader.scss'
 import { BsStar, BsStarFill } from "react-icons/bs";
 import Rating from "react-rating";
 import { axiosPublic } from "../../../api/apiMethod";
-import { useNavigate } from "react-router-dom";
 
-const CourseDetailsHeader = ({ course, avgRating, noOfRatings, isMobile=false }) => {
-  // const [active, setActive] = useState(false);
+const CourseDetailsHeader = ({ course, avgRating, noOfRatings }) => {
   const [enrollmentCount, setEnrollmentCount] = useState(undefined)
-  const navigate = useNavigate()
-
-  // const isActive = () => {
-  //   window.scrollY > 200 ? setActive(true) : setActive(false);
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", isActive);
-  //   return () => {
-  //     window.removeEventListener("scroll", isActive);
-  //   };
-  // }, []);
-// console.log(course?.fullName.toLowerCase().split(' ').join(''))
 
   useEffect(() => {
     const fetchTotalEnrolledStudents = async () => {
       if(course?._id){
         try {
           const {data} = await axiosPublic.get(`/enrolledCourse/enrollmentCount/${course?._id}`)
-          console.log("🚛🚜", data?.data)
           setEnrollmentCount(data?.data)
         } catch (error) {
-          console.log(error?.response?.data)
+          console.error(error?.response?.data)
         }
       }
     }
     fetchTotalEnrolledStudents()
   }, [course?._id])
-// console.log("💜💤", avgRating, enrollmentCount)
-  const bestSelllerTag = (avgRating >= 4.5 && noOfRatings >= 2) ? "Bestseller" : ""
 
-  const coursePurchaseHandler = () => {
-    navigate("/checkout", { state: [course] });
-  }
+  const bestSelllerTag = (avgRating >= 4.5 && noOfRatings >= 2) ? "Bestseller" : ""
 
   return (
     <div className="course-details--header">
@@ -76,13 +56,6 @@ const CourseDetailsHeader = ({ course, avgRating, noOfRatings, isMobile=false })
           </p>
         </div>
       </div>
-
-      {/* {isMobile && <div className='course-purchase__container'>
-        <div className="course-purchase--button">
-          <h3>₹{course?.price}</h3>
-          <button onClick={coursePurchaseHandler}>Buy Now</button>
-        </div>
-      </div>} */}
     </div>
   );
 };

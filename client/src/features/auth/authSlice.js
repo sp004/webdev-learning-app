@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { editUser, getUser, googleLogin, loginUser, logoutUser, registerUser } from './authService'
+import { getUser, googleLogin, loginUser, logoutUser, registerUser } from './authService'
 
 const initialState = {
     isLoggedin: false,
@@ -14,7 +14,7 @@ export const authregister = createAsyncThunk("auth/authregister", async (user, t
     try {
         return await registerUser(user)
     } catch (error) {
-        console.log(error.response)
+        // console.log(error.response)
         const message = error?.response?.data?.message    
         return thunkApi.rejectWithValue(message)
     }
@@ -22,7 +22,6 @@ export const authregister = createAsyncThunk("auth/authregister", async (user, t
 
 //generate otp to login
 export const authLogin = createAsyncThunk("auth/authLogin", async (data, thunkApi) => {
-    console.log(data)
     try {
         return await loginUser(data)
     } catch (error) {
@@ -36,7 +35,7 @@ export const loginWithGoogle = createAsyncThunk("auth/loginWithGoogle", async (d
     try {
         return await googleLogin(data)
     } catch (error) {
-        const  message = error?.response?.data?.message    
+        const message = error?.response?.data?.message    
         return thunkApi.rejectWithValue(message)
     }
 })
@@ -62,16 +61,6 @@ export const userProfile = createAsyncThunk("auth/userProfile", async (_, thunkA
     }
 })
 
-//update user profile
-// export const editUserProfile = createAsyncThunk("auth/editUserProfile", async (data, thunkApi) => {
-//     try {
-//         return await editUser(data)
-//     } catch (error) {
-//         const  message = error?.response?.data?.message    
-//         return thunkApi.rejectWithValue(message)
-//     }
-// })
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -88,14 +77,12 @@ const authSlice = createSlice({
             state.isLoading = true
         })
         .addCase(authregister.fulfilled, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.currentUser = payload.newUser
             state.message = payload.message
             state.isSuccess = true
         })
         .addCase(authregister.rejected, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.isSuccess = false 
             state.message = payload
@@ -106,14 +93,12 @@ const authSlice = createSlice({
             state.isLoading = true
         })
         .addCase(authLogin.fulfilled, (state, {payload}) => {
-            // console.log(payload)
             state.isLoading = false
             state.currentUser = payload.user
             state.isLoggedin = true
             state.isSuccess = true
         })
         .addCase(authLogin.rejected, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.isSuccess = false 
             state.message = payload
@@ -131,7 +116,6 @@ const authSlice = createSlice({
             state.currentUser = payload.user
         })
         .addCase(loginWithGoogle.rejected, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.isLoggedin = false
             state.message = payload
@@ -142,14 +126,12 @@ const authSlice = createSlice({
             state.isLoading = true
         })
         .addCase(authLogout.fulfilled, (state, {payload}) => {
-            // console.log(payload)
             state.isLoading = false
             state.currentUser = null
             state.isLoggedin = false
             state.isSuccess = true
         })
         .addCase(authLogout.rejected, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.isSuccess = false 
             state.message = payload
@@ -160,37 +142,19 @@ const authSlice = createSlice({
             state.isLoading = true
         })
         .addCase(userProfile.fulfilled, (state, {payload}) => {
-            // console.log(payload)
             state.isLoading = false
             state.currentUser = payload
             state.isSuccess = true
         })
         .addCase(userProfile.rejected, (state, {payload}) => {
-            console.log(payload)
             state.isLoading = false
             state.isSuccess = false 
             state.message = payload.message
         })
-        //update user
-        // .addCase(editUserProfile.pending, (state) => {
-        //     state.isLoading = true
-        // })
-        // .addCase(editUserProfile.fulfilled, (state, {payload}) => {
-        //     state.isLoading = false
-        //     state.currentUser = payload.user
-        //     state.isSuccess = true
-        // })
-        // .addCase(editUserProfile.rejected, (state, {payload}) => {
-        //     console.log(payload)
-        //     state.isLoading = false
-        //     state.isSuccess = false 
-        //     state.message = payload
-        // })
   }
 });
 
 export const user = (state) => state.auth?.currentUser?.user
-
 export const {reset, logout} = authSlice.actions
 
 export default authSlice.reducer

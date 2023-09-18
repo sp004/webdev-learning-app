@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { axiosPublic } from '../../../api/apiMethod'
-import { getInstructor } from '../../../features/Instructor/InstructorSlice'
 import { AiFillPlayCircle, AiFillStar } from 'react-icons/ai'
 import { HiUsers } from 'react-icons/hi'
 import { MdReviews } from 'react-icons/md'
@@ -17,33 +16,32 @@ const MeetYourInstructor = ({course}) => {
   
   const {currentUser} = useSelector(state => state.auth)
   const {instructor} = useSelector(state => state.instructor)
-console.log("💛💦", course)
+
   useEffect(() => {
     const fetchInstructorStats = async () => {
       if(course?.createdBy?._id){
         try {
           const {data} = await axiosPublic.get(`/instructor/stats/${course?.createdBy?._id}`)
-          console.log("🚂🛵", data)
+
           setInstructorRating(data?.avgRating?.reduce((acc, cv) => acc + cv, 0))
           setTotalReviews(data?.noOfReviews)
           setTotalEnrolledStudents(data?.totalEnrolledStudents?.reduce((acc, cv) => acc + cv, 0))
         } catch (error) {
-          console.log(error?.response.data)
+          console.error(error?.response.data)
         }
       }
     }
     fetchInstructorStats()
   }, [course?.createdBy?._id])
-console.log("💞💦", instructorRating, totalReviews, instructorRating/totalReviews)
+
   useEffect(() => {
     const fetchPublishedCourses = async () => {
       if(course?.createdBy?._id){
         try {
           const {data} = await axiosPublic.get(`/instructor/courses/${course?.createdBy?._id}/${currentUser?._id}`, {withCredentials: true})
-          console.log(data?.courses)
           setCourses(data?.courses)
         } catch (error) {
-          console.log(error?.response.data)
+          // console.log(error?.response.data)
           toast.error('Something went wrong')
         }
       }
@@ -53,13 +51,10 @@ console.log("💞💦", instructorRating, totalReviews, instructorRating/totalRe
 
   const otherCourses = courses?.filter(c => c?._id !== course?._id)
 
-  console.log("🐱", otherCourses)
-  // console.log("🤪", instructor)
-
   return (
     <div id={`${instructor?.fullName?.toLowerCase().split(' ').join('')}`} className='instructor-details'>
         <h2>Meet Your Instructor</h2>
-        {/* img, name, design, no of students, total courses, avg rating */}
+
         <div className='instructor-details--container'>
           <div className='instructor-details--top'>
             <h3 className='instructor-details--fullname'>{course?.createdBy?.fullName}</h3>

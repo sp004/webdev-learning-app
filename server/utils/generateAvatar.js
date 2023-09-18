@@ -9,11 +9,10 @@ export const getRandomColor = () => {
     return color;
 }
 
-
 export const getInitials = (name) => {
     let initials;
     const nameSplit = name.split(" ");
-    const nameLength = nameSplit.length; //no of words in name
+    const nameLength = nameSplit.length; //number of words in name
     if (nameLength > 1) {
         initials =
             nameSplit[0].substring(0, 1) +

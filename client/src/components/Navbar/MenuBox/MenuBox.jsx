@@ -6,8 +6,6 @@ import { Reset } from '../../../features/Instructor/InstructorSlice'
 import './MenuBox.scss'
 import { clearCart } from '../../../features/cart/cartSlice'
 import { clearWishlist } from '../../../features/wishlist/wishlistSlice'
-import { MdClose } from 'react-icons/md'
-import {RiArrowRightSLine} from 'react-icons/ri'
 
 const MenuBox = ({setToggle}) => {
     const dispatch = useDispatch()
@@ -38,68 +36,29 @@ const MenuBox = ({setToggle}) => {
             navigate('/')
         }
     }
-// console.log(openMobileSideNav)
+
   return (
-    <>
-    {/* {
-        !openMobileSideNav */}
-        <div ref={boxRef} className='dropdown-nav'>
-            <div className="dropdown-nav--triangle"></div>
-            <ul className='menus'>
-                <li className='menu' onClick={() => navigate('/account/')}>Account</li>
-                {currentUser?.isInstructor ? 
-                <li className='menu mobile_nav-link'>
-                    <Link to={location?.state ? location.state.prev : '/instructor/dashboard/'} state={{prevPath: location.pathname}}>Instructor</Link>
-                </li> :
-                <li className='menu mobile_nav-link'>
-                    <Link to='/instructor/onboarding' state={{prevPath: location.pathname}}>Be an Instructor</Link>
-                </li>
-                }
-                {isLoggedin && 
-                <li className='menu mobile_nav-link'>
-                    <NavLink to='/my-courses/learning' className={(navData) => navData.isActive ? 'active' : ''}>My Learning</NavLink>
-                </li>}
-                <li className='menu' onClick={() => navigate('/my-courses/wishlist')}>Wishlist</li>
-                {/* <li className='menu'>Dark Mode</li> */}
-                <li className='menu' onClick={logoutHandler}>Logout</li>
-            </ul>
-        </div>
-        {/* : <div className='side-navbar'>
-            <MdClose className='side-navbar--close' onClick={() => setOpenMobileSideNav(prev => !prev)} />
-            {isLoggedin     
-            ? <div className='side-navbar--top'>
-                <img src={currentUser?.avatar} alt={currentUser?.fullName} />
-                <div className='side-navbar--userinfo'>
-                    <p className='side-navbar--userinfo-name'>Hi, {currentUser?.fullName}</p>
-                    <p>Welcome back</p>
-                </div>
-                <RiArrowRightSLine className='side-navbar--account' onClick={() => navigate('/account/')} />
-            </div>
-            : <div className='menu'>
-                <NavLink to='/login'>Login</NavLink>
-            </div>
+    <div ref={boxRef} className='dropdown-nav'>
+        <div className="dropdown-nav--triangle"></div>
+        <ul className='menus'>
+            <li className='menu' onClick={() => navigate('/account/')}>Account</li>
+            {currentUser?.isInstructor ? 
+            <li className='menu mobile_nav-link'>
+                <Link to={location?.state ? location.state.prev : '/instructor/dashboard/'} state={{prevPath: location.pathname}}>Instructor</Link>
+            </li> :
+            <li className='menu mobile_nav-link'>
+                <Link to='/instructor/onboarding' state={{prevPath: location.pathname}}>Be an Instructor</Link>
+            </li>
             }
-            <hr />
-            <ul className='menus'>
-                {currentUser?.isInstructor ? 
-                <li className='menu'>
-                    <Link to={location?.state ? location.state.prev : '/instructor/dashboard/'} state={{prevPath: location.pathname}}>Instructor</Link>
-                </li> :
-                <li className='menu'>
-                    <Link to='/instructor/onboarding' state={{prevPath: location.pathname}}>Be an Instructor</Link>
-                </li>
-                }
-                {isLoggedin && 
-                <li className='menu'>
-                    <NavLink to='/my-courses/learning' className={(navData) => navData.isActive ? 'active' : ''}>My Learning</NavLink>
-                </li>}
-                <li className='menu' onClick={() => navigate('/my-courses/wishlist')}>Wishlist</li>
-                {/* <li className='menu'>Dark Mode</li> 
-                <li className='menu' onClick={logoutHandler}>Logout</li>
-            </ul>
-        </div>
-    } */}
-    </>
+            {isLoggedin && 
+            <li className='menu mobile_nav-link'>
+                <NavLink to='/my-courses/learning' className={(navData) => navData.isActive ? 'active' : ''}>My Learning</NavLink>
+            </li>}
+            <li className='menu' onClick={() => navigate('/my-courses/wishlist')}>Wishlist</li>
+            {/* <li className='menu'>Dark Mode</li> */}
+            <li className='menu' onClick={logoutHandler}>Logout</li>
+        </ul>
+    </div>
   )
 }
 

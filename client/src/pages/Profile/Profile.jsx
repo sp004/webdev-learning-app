@@ -93,7 +93,6 @@ const Profile = () => {
   const deleteAccountHandler = async () => {
     try {
       const {data} = await axiosPublic.delete(`/user/delete/${currentUser?._id}`);
-      console.log(data)
       if (data?.status === "Success") {
         navigate("/", { replace: true });
       }

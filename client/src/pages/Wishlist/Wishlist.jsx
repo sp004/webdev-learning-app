@@ -16,9 +16,6 @@ const Wishlist = () => {
     dispatch(getWishlistCourses())
   }, [dispatch])
   
-  console.log("wish courses ===>", courses)
-  // console.log("wish courses ===>", wishlistCourses)
-  
   return (
     <>
       <SubNavbar title='My Learning' links={myCourseSubNavLinks}  />
@@ -42,43 +39,3 @@ const Wishlist = () => {
 }
 
 export default Wishlist
-
-
-// const exArr = [
-//   {
-//     type: 'list',
-//     payload: {
-//       course: {
-//         title: 'My Courses',
-//         price: 123,
-//         desc: 'Lorem Ipsum is Lorem Ipsum but'
-//       }
-//     },
-//     meta: 'sfnjdjhsj'
-//   },
-//   {
-//     type: 'map',
-//     payload: {
-//       course: {
-//         title: 'Our Courses',
-//         price: 823,
-//         desc: 'Lortr rtrt Ipsum is Lorem Ipsum but'
-//       }
-//     },
-//     meta: 'kuiuu'
-//   }
-// ]
-
-// const exArr = [
-//   {
-//     title: 'My Courses',
-//     price: 123,
-//     desc: 'Lorem Ipsum is Lorem Ipsum but'
-//   },
-//   {
-//     title: 'Our Courses',
-//     price: 823,
-//     desc: 'Lortr rtrt Ipsum is Lorem Ipsum but'
-//   }
-// ]
-

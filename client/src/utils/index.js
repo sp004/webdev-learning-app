@@ -46,18 +46,3 @@ export const category = {
 export const level = {
     courseLevel: ['beginners', 'Intermediate', 'advanced', 'all level']
 }
-
-// export const rating = {
-//     courseRating: [4.5, 4, 3]
-// }
-// export const rating = [
-//     {
-//         value: 4.5,
-//     }
-// ]
-
-// export const menus = {
-//     numericMenu: [4.5, 4, 3],
-//     refinementList: ['beginners', 'Intermediate', 'advanced', 'all level'],
-//     courseCategory: ['Frontend Development', 'Backend Development', 'Fullstack Development']
-// }

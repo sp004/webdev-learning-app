@@ -1,6 +1,5 @@
 import React from "react";
 import "./CoursePurchaseAction.scss";
-import moment from "moment";
 import Rating from "react-rating";
 import { BsStar, BsStarFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";

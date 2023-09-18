@@ -12,7 +12,6 @@ export const registerUser = asyncHandler(async(req, res, next) => {
     const { fullName, email } = req.body;
 
     try {
-        
         //if the email already exists
         const duplicate = await User.findOne({ email }).exec()
         if (duplicate) {
@@ -31,17 +30,15 @@ export const registerUser = asyncHandler(async(req, res, next) => {
             return next(ErrorHandler(400, 'Invalid user details'))
         }
     } catch (error) {
-        console.log("😁", error)
         if (error.name === 'ValidationError') {
             const errorMessage = error.errors?.fullName?.message || error.errors?.email?.message;
             res.status(400).json({ message: errorMessage });
           } else {
-            console.error('Error:', error);
+            console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
           }
     }
 })
-
 
 export const generateOtp = asyncHandler(async(req, res, next) => {
     const {email} = req.body
@@ -94,7 +91,7 @@ export const sendOtpToEmail = asyncHandler(async(req, res, next) => {
     const to = email;
     const replyTo = "no-reply@webskool.com";
     const template = "otpVerify";
-    const name = user.fullName;
+    const name = user?.fullName;
     const link = otp;
 
     try {
@@ -152,12 +149,11 @@ export const loginWithOtp = asyncHandler(async(req, res, next) => {
 
 export const logoutUser = asyncHandler(async(req, res, next) => {
     const {token} = req.cookies 
-    // console.log("🤗", token)
+
     if(!token) return next(ErrorHandler(204, 'Your session has ended, please login again'))
     const refreshToken = token;
-    // console.log("😅", refreshToken)
+
     const user = await User.findOne({token: refreshToken}).exec()
-    // console.log("😆", user)
     if(!user){
         res.clearCookie('token', { httpOnly: true, sameSite: 'None', secure: true })
         return res.status(200).json({message: 'No user found'})

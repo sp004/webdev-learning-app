@@ -31,29 +31,26 @@ const InstructorOnboard = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {currentUser} = useSelector(state => state.auth)
 
   useEffect(() => {
     dispatch(userProfile())
   }, [dispatch])
   
-
   const onboardHandler = async(instructorData) => {
     try {
         const {data} = await axiosPublic.post('/instructor/onboard', instructorData)
-        // console.log(res.data)
         data?.status === 'Success' && toast.success(data?.message)
         setTimeout(() => {
           navigate('/instructor/create-course', {replace: true})
         }, 2000);
     } catch (error) {
-        console.error(error.message);
+      toast.error('Something went wrong')
+        // console.error(error.message);
     }
   }
-console.log(isValid)
+
   return (
     <div className="instructor-onboard_container">
-      {/* <InstructorNavbar /> */}
       <h1>Complete the Onboarding Process</h1>
 
       <form className="instructor-onboard_form" onSubmit={handleSubmit(onboardHandler)}>

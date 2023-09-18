@@ -4,7 +4,6 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 const RequireAuth = () => {
     const {isLoggedin, isSuccess} = useSelector(state => state.auth)
-    console.log(isLoggedin, isSuccess)
 
   return (
     !isLoggedin 

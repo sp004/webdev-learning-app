@@ -4,7 +4,6 @@ import { BsStar, BsStarFill } from 'react-icons/bs'
 import Rating from 'react-rating'
 
 const Feedback = ({avgRating, ratingsByCount, totalReviewer}) => {
-  console.log(ratingsByCount)
 
   return (
     <div className='course_feedback'>
@@ -21,8 +20,8 @@ const Feedback = ({avgRating, ratingsByCount, totalReviewer}) => {
           <p>Course Rating</p>
         </div>
         <div className='course_feedback--right'>
-          {ratingsByCount?.map(item => (
-            <div className='course_feedback--right-container'>
+          {ratingsByCount?.map((item, i) => (
+            <div className='course_feedback--right-container' key={i}>
               <div className='course_feedback--percentline'>
                 <div className='course_feedback--percentline-container'>
                   <div className='course_feedback--lightbg'>

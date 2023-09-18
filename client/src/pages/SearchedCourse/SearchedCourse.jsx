@@ -5,7 +5,7 @@ import { SearchFilter, SearchedCourseCard } from '../../components';
 import useFetchCourses from '../../hooks/useFetchCourses';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { BiFilter, BiFilterAlt } from 'react-icons/bi';
+import { BiFilterAlt } from 'react-icons/bi';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import FilterSidebar from '../../components/FilterSidebar/FilterSidebar';
 
@@ -14,26 +14,9 @@ const SearchedCourse = () => {
     const [sortedCourses, setSortedCourses] = useState([])
     const [openSidebarFilter, setOpenSidebarFilter] = useState(false)
     const location = useLocation();
-    // const [searchedCourses, setSearchedCourses] = useState([])
     const [searchParams] = useSearchParams();
     const keyword = searchParams.get('query'); 
     useDocumentTitle(`Search courses - Webdev Skool`)
-    // useEffect(() => {
-    //     const fetchSuggestedCourses = async () => {
-    //         if(keyword){
-    //             try {
-    //                 console.log(keyword)
-    //                 const {data} = await axiosPublic.get(`/course/search?query=${keyword}`, {withCredentials: true})
-    //                 console.log("♈🚫", data)
-    //                 setSearchedCourses(data?.course)
-    //             } catch (error) {
-    //                 console.log(error?.response?.data)
-    //             }
-    //         }
-    //     }
-    //     fetchSuggestedCourses()
-    // }, [keyword])
-    // console.log(searchedCourses)
 
     const {courses} = useFetchCourses(`/course/search${location?.search}`)
     useEffect(() => {
@@ -42,10 +25,8 @@ const SearchedCourse = () => {
         }else if(sortCourse === 'newest'){
             setSortedCourses(courses?.sort((a, b) => a.uploadedOn - b.uploadedOn))
         }else if(sortCourse === 'price-asc'){
-            console.log("*-*-**-")
             setSortedCourses(() => courses?.sort((a, b) => a.price - b.price))
         }else{
-            console.log("*+*+*+*+*")
             setSortedCourses(() => courses?.sort((a, b) => b.price - a.price))
         }
     }, [sortCourse, courses])
@@ -61,7 +42,6 @@ const SearchedCourse = () => {
                 <h1 className='search_header--title'>{courses?.length} results for "{keyword}"</h1>
                 <div className='customize-search'>
                     <FilterSidebar sidebarFilterHandler={openSidebarFilterHandler} openSidebarFilter={openSidebarFilter} />
-                    {/* {!openSidebarFilter && <FilterSidebar sidebarFilterHandler={openSidebarFilterHandler} openSidebarFilter={openSidebarFilter} />} */}
                     <div className="search_filter--button" onClick={openSidebarFilterHandler}>
                         <BiFilterAlt />
                         <span>Apply Filters</span>

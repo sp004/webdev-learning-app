@@ -9,6 +9,8 @@ import './Home.scss'
 
 const Home = () => {
   useDocumentTitle(`Home - Webdev Skool`)
+  const [isTopRatedLoading, setIsTopRatedLoading] = useState(false)
+  const [isLatestLoading, setIsLatestLoading] = useState(false)
   const [recentCourses, setRecentCourses] = useState([])
   const [bestSellingCourses, setBestSellingCourses] = useState([])
   const {currentUser} = useSelector(state => state.auth)
@@ -17,12 +19,14 @@ const Home = () => {
   useEffect(() => {
     const fetchBestSellingCourses = async () => {
       // if(currentUser?._id){
+        setIsTopRatedLoading(true)
         try {
-          const {data} = await axiosPublic.get(`/course/bestSellingCourses/${currentUser?._id}`, {withCredentials: true})
+          const {data} = await axiosPublic.get(`/course/bestSellingCourses/${currentUser?._id}`)
           setBestSellingCourses(data?.data?.sort((a, b) => b.avgRating - a.avgRating))
         } catch (error) {
           toast.error('Something went wrong')
         }
+        setIsTopRatedLoading(false)
       // }
     }
     fetchBestSellingCourses()
@@ -31,12 +35,14 @@ const Home = () => {
   useEffect(() => {
     const fetchRecentUploads = async () => {
       // if(currentUser?._id){
+        setIsLatestLoading(true)
         try {
-          const {data} = await axiosPublic.get(`/course/recentUploads/${currentUser?._id}`, {withCredentials: true})
+          const {data} = await axiosPublic.get(`/course/recentUploads/${currentUser?._id}`)
           setRecentCourses(data?.data)
         } catch (error) {
           toast.error('Something went wrong')
         }
+        setIsLatestLoading(false)
       // }
     }
     fetchRecentUploads()
@@ -51,8 +57,8 @@ const Home = () => {
       <Header />
 
       <div className='wrapper'>
-        <CourseSection heading='Top Rated Courses' courses={bestSellingCourses}  />
-        <CourseSection heading='Latest Uploads' courses={recentCourses} />
+        <CourseSection heading='Top Rated Courses' courses={bestSellingCourses} loading={isTopRatedLoading}  />
+        <CourseSection heading='Latest Uploads' courses={recentCourses} loading={isLatestLoading} />
       </div>
     </>
   )

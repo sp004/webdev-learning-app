@@ -16,7 +16,7 @@ import orderRouter from './routes/orderRoute.js'
 import reviewRouter from './routes/reviewRoute.js'
 import cartRouter from './routes/cartRoute.js'
 // import session from 'express-session'
-import cookieSession from 'cookie-session'
+// import cookieSession from 'cookie-session'
 // import { limiter } from './middlewares/rateLimiter.js'
 
 const app = express()
@@ -31,9 +31,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(cookieParser())
 
-app.use(
-  cookieSession({ name: "secret", keys: ["lama"], maxAge: 24 * 60 * 60 })
-);
+// app.use(
+//   cookieSession({ name: "secret", keys: ["lama"], maxAge: 24 * 60 * 60 })
+// );
 
 // app.use(session({
 //   secret: 'secret',

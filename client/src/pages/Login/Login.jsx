@@ -1,7 +1,7 @@
 import {axiosPublic} from '../../api/apiMethod'
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss'
 import { GoogleLogin } from '@react-oauth/google';
@@ -122,7 +122,7 @@ const Login = () => {
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                 >
-                  Sign in with Googly
+                  Sign in with Google
                 </button>
               )}
               buttonText="Login"

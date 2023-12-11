@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { axiosPublic } from "../../../api/apiMethod";
-import { IoMdClose } from "react-icons/io";
 
 const NavbarSearch = () => {
   const [query, setQuery] = useState("");

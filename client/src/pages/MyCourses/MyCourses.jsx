@@ -44,7 +44,6 @@ const MyCourses = () => {
   const {
     data: enrolledCourses,
     isLoading,
-    isError,
     error,
     isFetching,
     isPreviousData,

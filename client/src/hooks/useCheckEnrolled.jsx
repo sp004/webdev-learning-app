@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { axiosPrivate, axiosPublic } from "../api/apiMethod"
+import { useSelector } from "react-redux"
+import { axiosPublic } from "../api/apiMethod"
 
 const useCheckEnrolled = (courseId) => {
     const [isEnrolled, setIsEnrolled] = useState(false)

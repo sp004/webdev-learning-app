@@ -3,7 +3,6 @@ import authReducer from "../features/auth/authSlice";
 import instructorReducer from "../features/Instructor/InstructorSlice";
 import {persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import courseReducer from "../features/course/courseSlice";
 import cartReducer from "../features/cart/cartSlice";
 import wishlistReducer from "../features/wishlist/wishlistSlice";
   
@@ -16,7 +15,6 @@ import wishlistReducer from "../features/wishlist/wishlistSlice";
   const rootReducer = combineReducers({
     auth: authReducer, 
     instructor: instructorReducer,
-    course: courseReducer,
     cart: cartReducer,
     wishlist: wishlistReducer
   })

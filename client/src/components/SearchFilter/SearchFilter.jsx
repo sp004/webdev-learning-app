@@ -1,16 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import { BsStar, BsStarFill } from "react-icons/bs";
-import Rating from "react-rating";
+import React, { useState } from "react";
 import './SearchFilter.scss'
-import { useRef } from "react";
-import { useEffect } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import useFetchCourses from "../../hooks/useFetchCourses";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import RatingFilter from "./FilterElement/RatingFilter";
 import qs from 'query-string';
 import LevelFilter from "./FilterElement/LevelFilter";
-import { useCallback } from "react";
 import CategoryFilter from "./FilterElement/CategoryFilter";
 import { categoryFilters, levelFilters } from "../../utils/data";
 import { BiMinus, BiPlus } from "react-icons/bi";

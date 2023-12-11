@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { axiosPublic } from '../../api/apiMethod'
 import './Checkout.scss'
-import { toast } from 'react-hot-toast'
 import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 const Checkout = () => {

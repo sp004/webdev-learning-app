@@ -31,10 +31,9 @@ const LoginOTP = () => {
     await dispatch(authLogin({email, otp: formattedOtp}))
   }
 
-  const resendOtpHandler = async () => {
-    // await axiosPublic.post('/auth/login', {email})
-    await axiosPublic.post(`/auth/sendotp/${email}`)
-  }
+  // const resendOtpHandler = async () => {
+  //   await axiosPublic.post(`/auth/sendotp/${email}`)
+  // }
 
   useEffect(() => {
     if(currentUser){

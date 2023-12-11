@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SubNavbar } from "../../components";
-import { getInstructor, Reset} from "../../features/Instructor/InstructorSlice";
+import { getInstructor } from "../../features/Instructor/InstructorSlice";
 import "../Profile/Profile.scss";
 import { axiosPublic } from "../../api/apiMethod";
 import { accountSubNavLinks } from "../../utils";
@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 const InstructorProfile = () => {
   useDocumentTitle(`Instructor Profile - Webdev Skool`)
   const { _id } = useSelector((state) => state.auth.currentUser);
-  const { isLoading, instructor } = useSelector(state => state.instructor);
+  const { instructor } = useSelector(state => state.instructor);
   const dispatch = useDispatch();
 
   useEffect(() => {

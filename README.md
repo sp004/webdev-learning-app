@@ -12,21 +12,34 @@
 
 ![App Screenshot](https://res.cloudinary.com/dh4nb9zjl/image/upload/v1695055780/webdevskool/github%20screenshots/create-course_eflacs.png)
 
+![App Screenshot](https://res.cloudinary.com/dh4nb9zjl/image/upload/v1708352382/webdevskool/github%20screenshots/search_puu9nb.png)
+
 ![App Screenshot](https://res.cloudinary.com/dh4nb9zjl/image/upload/v1695056937/webdevskool/github%20screenshots/admin_sjoyav.png)
 
 ## Key Features
 
-- Signin with Google or using OTP(in registered email)
+- **Signin with Google** or using **OTP** (in registered email)
 - Students can add courses in the cart, wishlist
-- Purchase course using RazorPay with refund facility
-- Filter and sort courses based on different attributes
-- Students can create Instructor account to upload courses
+- Purchase course using **RazorPay with refund** option
+- **Filter** and **sort** courses based on different attributes
+- Students can create **Instructor account** to upload courses
 - Students who have Instructor account, cannot delete their account
-- After uploading courses, admin will approve or reject the course
-- With only Approved status, courses will be published
-- Students can create, edit, delete review on enrolled courses
-- Edit Profile at any time
-- Fully responsive
+- After uploading courses, admin will **approve or reject** the course from **admin panel** - https://webdevskool-admin.vercel.app/
+- Courses with Approved status, will be published for purchase
+- Students can provide **feedback** with **rating** on enrolled courses, also can **modify** & **delete** their feedback
+- **Edit user profile** at any time
+- Fully **responsive**
+
+
+
+## Optimizations
+
+ - Implement **lazy loading** to improve performance by increasing page loading by 20% 
+ - Apply **debouncing** to limit API calls at the time of searching
+ - Implement **event propagation** for better optimization
+
+
+
 
 ## Run Locally
 

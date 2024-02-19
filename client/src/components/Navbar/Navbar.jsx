@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
+import mobileLogo from '../../assets/mobileLogo.png'
 import './Navbar.scss'
 import {MdOutlineShoppingCart} from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,10 +32,12 @@ const Navbar = () => {
   return (
     <nav className='space-bw'>
         <div className='logo'>
-            <NavLink to='/'>
-                <img src={logo} alt="logo" onClick={() => navigate('/')} />
-            </NavLink>
+            {/* <img src={!openMobileSideNav ? logo : mobileLogo} alt="logo" onClick={() => navigate('/')} /> */}
+            <img src={logo} alt="logo" className='desktop-logo' onClick={() => navigate('/')} />
+            <img src={mobileLogo} alt="logo" className='mobile-logo' onClick={() => navigate('/')} />
         </div>
+        {/* <div className='logo'>
+        </div> */}
 
         <NavbarSearch />
 

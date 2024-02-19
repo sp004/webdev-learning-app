@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+import {Loader} from '../../components'
 
 const schema = yup.object().shape({
   email: yup.string().email('Please enter a valid email').required("Email is required").trim(),
@@ -22,7 +23,7 @@ const Login = () => {
     register, 
     handleSubmit, 
     watch,
-    formState: {errors, isValid} //subscribe to errors state
+    formState: {errors, isValid, isSubmitting} //subscribe to errors state
   } = useForm({
     defaultValues: {
       email: ""
@@ -48,6 +49,7 @@ const Login = () => {
       }, 2000);
     }
   }
+  // console.log(isSubmitting)
   
   useEffect(() => {
     const sendOtp = async () => { 
@@ -95,7 +97,7 @@ const Login = () => {
             {error && <p className="input-error">{error}</p>}
           </div>
 
-          <input type="submit" value="Continue" className="button" disabled={!isValid} />
+          <input type="submit" value={!isSubmitting ? "Continue" : "Loading..."} className="button" disabled={!isValid} />
           <p>
             Not registered yet? &nbsp;
             <Link to='/signup'>Sign up</Link>

@@ -23,4 +23,4 @@ export {default as PublishedCourse} from './CreateCourse/UploadedCourse/Publishe
 export {default as SearchFilter} from './SearchFilter/SearchFilter'
 export {default as SearchedCourseCard} from './SearchedCourseCard/SearchedCourseCard'
 export {default as CoursePurchaseAction} from './CourseDetails/CoursePurchaseAction/CoursePurchaseAction'
-export {default as Loading} from './Loading/Loading'
+export {default as Loader} from './Loader/Loader'

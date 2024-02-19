@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SubNavbar, ReviewForm, Loading } from "../../components";
+import { SubNavbar, ReviewForm, Loader } from "../../components";
 import { myCourseSubNavLinks } from "../../utils";
 import { axiosPublic } from "../../api/apiMethod";
 import { useNavigate } from "react-router-dom";
@@ -59,7 +59,7 @@ const MyCourses = () => {
       <div className="wrapper">
         <section>
           {isLoading ? (
-            <Loading loading={isLoading} />
+            <Loader loading={isLoading} />
           ) : (
             <>
               {(enrolledCourses?.length > 0 || error?.response?.status !== 404) ? (
